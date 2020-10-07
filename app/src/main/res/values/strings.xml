@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Home training</string>
+    <string name="upper">상체</string>
+    <string name="lower">하체</string>
+</resources>
