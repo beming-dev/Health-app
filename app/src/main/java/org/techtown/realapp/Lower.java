@@ -72,19 +72,19 @@ public class Lower extends AppCompatActivity {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = getSharedPreferences("exercise", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         String json = gson.toJson(exercise, type);
-        editor.putString("exercise", json);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.commit();
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences("exercise", MODE_PRIVATE);
+        SharedPreferences sharedpref = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("exercise", "");
+        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

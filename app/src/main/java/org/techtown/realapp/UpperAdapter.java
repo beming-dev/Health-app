@@ -2,6 +2,7 @@ package org.techtown.realapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
 
     private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise = null;
-    private Context mcontext;
-    SharedPreferences preferences;
+    private Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -32,21 +32,10 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
 
         public ViewHolder(View view) {
             super(view);
-            mTextView = (TextView) view.findViewById(R.id.textView);
-            cbSelect = (CheckBox) view.findViewById(R.id.check_exercise);
+            mTextView = view.findViewById(R.id.textView);
+            cbSelect = view.findViewById(R.id.check_exercise);
 
-            int pos = getAdapterPosition();
-
-
-            Type type = new TypeToken<ArrayList<Ex>>() {
-            }.getType();
-            Gson gson = new Gson();
-
-            preferences = view.getContext().getSharedPreferences("ExEx", MODE_PRIVATE);
-            String json = preferences.getString("ex", "");
-            exercise = gson.fromJson(json, type);
-
-            assert exercise != null;
+            exercise = ReadExerciseData();
 
             SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
 
@@ -59,7 +48,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
 
     public UpperAdapter(ArrayList<MyData> myDataSet, Context mContext) {
         mDataSet = myDataSet;
-        this.mcontext = mContext;
+        this.mContext = mContext;
     }
 
     @Override
@@ -72,8 +61,6 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
 
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        assert exercise != null;
-
         holder.mTextView.setText(mDataSet.get(position).text);
         holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
@@ -81,10 +68,11 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mDataSet.get(position).setSelected(b);
 
+                mDataSet.get(position).setSelected(b);
                 if (mDataSet.get(position).isSelected) {
 //                    Upper.upperEx[position].choosed = 1;
+                    Log.d("HEALTH_APP", exercise + "B");
                     exercise.get(position).choice();
                 } else {
 //                    Upper.upperEx[position].choosed = 0;
@@ -119,7 +107,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise) {
-        SharedPreferences preferences = mcontext.getSharedPreferences("ExEx", mcontext.MODE_PRIVATE);
+        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Ex>>() {
@@ -130,9 +118,9 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences preferences = mcontext.getSharedPreferences("ExEx", mcontext.MODE_PRIVATE);
+        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = preferences.getString("exercise", "");
+        String json = preferences.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>() {
         }.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);

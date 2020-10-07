@@ -1,17 +1,12 @@
 package org.techtown.realapp;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,17 +44,6 @@ public class RoutineNumber extends AppCompatActivity {
         Intent intent = getIntent();
 
         exercise = ReadExerciseData();
-
-        //처음 이 activity 호출되면 초기화 / 곧 지울 수 있음.
-        itcalled++;
-        if(itcalled == 1){
-            for(int i=0; i<exercise.size(); i++){
-//                Upper.upperEx[i] = new Ex();
-//                Upper.upperEx[i].choosed = 0;
-//                Upper.upperEx[i].name = null;
-                exercise.get(i).init();
-            }
-        }
 
         Button complete = findViewById(R.id.complete);
 
@@ -187,18 +171,18 @@ public class RoutineNumber extends AppCompatActivity {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = getSharedPreferences("exercise", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
-        editor.putString("exercise", json);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.commit();
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences("exercise", MODE_PRIVATE);
+        SharedPreferences sharedpref = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("exercise", "");
+        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
