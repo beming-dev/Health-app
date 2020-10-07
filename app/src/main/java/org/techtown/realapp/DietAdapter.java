@@ -23,7 +23,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataset;
-    private ArrayList<Ex> excercise;
+    private ArrayList<Ex> exercise;
     private Context mcontext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,7 +58,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
 
-        excercise = ReadExcerciseData();
+        exercise = ReadExerciseData();
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -67,10 +67,10 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
                 if(mDataset.get(position).isSelected){
 //                    Upper.upperEx[position].choosed = 1;
-                    excercise.get(position).choice();
+                    exercise.get(position).choice();
                 }else{
 //                    Upper.upperEx[position].choosed = 0;
-                    excercise.get(position).unchoice();
+                    exercise.get(position).unchoice();
                 }
             }
         });
@@ -98,19 +98,19 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         }
     }
 
-    private void SaveExcerciseData(ArrayList<Ex> excercise){
-        SharedPreferences preferences = mcontext.getSharedPreferences("excercise", MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences preferences = mcontext.getSharedPreferences("exercise", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(excercise);
-        editor.putString("excercise", json);
+        String json = gson.toJson(exercise);
+        editor.putString("exercise", json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExcerciseData() {
-        SharedPreferences sharedpref = mcontext.getSharedPreferences("excercise", MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData() {
+        SharedPreferences sharedpref = mcontext.getSharedPreferences("exercise", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("excercise", "");
+        String json = sharedpref.getString("exercise", "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class TodayExcercise extends AppCompatActivity {
+public class TodayExercise extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -25,7 +25,7 @@ public class TodayExcercise extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.today_excercise);
+        setContentView(R.layout.today_exercise);
         mRecyclerView = (RecyclerView) findViewById(R.id.today_recycler);
 
         mRecyclerView.setHasFixedSize(true);

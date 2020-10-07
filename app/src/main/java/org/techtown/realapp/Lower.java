@@ -44,9 +44,9 @@ public class Lower extends AppCompatActivity {
 //            lowerEx[i].name = null;
 //        }
 
-        upperEx = ReadExcerciseData();
+        upperEx = ReadExerciseData();
 
-        SaveExcerciseData(upperEx);
+        SaveExerciseData(upperEx);
 
 //        lowerEx[0].name = "스쿼트";
         myDataset.add(new LowerAdapter.MyData(("스쿼트"), false));
@@ -71,20 +71,20 @@ public class Lower extends AppCompatActivity {
         });
     }
 
-    private void SaveExcerciseData(ArrayList<Ex> excercise){
-        SharedPreferences preferences = getSharedPreferences("excercise", MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences preferences = getSharedPreferences("exercise", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        String json = gson.toJson(excercise, type);
-        editor.putString("excercise", json);
+        String json = gson.toJson(exercise, type);
+        editor.putString("exercise", json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExcerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences("excercise", MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData() {
+        SharedPreferences sharedpref = getSharedPreferences("exercise", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("excercise", "");
+        String json = sharedpref.getString("exercise", "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

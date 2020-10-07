@@ -47,9 +47,9 @@ public class Core extends AppCompatActivity {
 //            coreEx[i].name = null;
 //        }
 
-        upperEx = ReadExcerciseData();
+        upperEx = ReadExerciseData();
 
-        SaveExcerciseData(upperEx);
+        SaveExerciseData(upperEx);
 
 
 
@@ -80,19 +80,19 @@ public class Core extends AppCompatActivity {
         });
     }
 
-    private void SaveExcerciseData(ArrayList<Ex> excercise){
-        SharedPreferences preferences = getSharedPreferences("excercise", MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences preferences = getSharedPreferences("exercise", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(excercise);
-        editor.putString("excercise", json);
+        String json = gson.toJson(exercise);
+        editor.putString("exercise", json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExcerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences("excercise", MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData() {
+        SharedPreferences sharedpref = getSharedPreferences("exercise", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("excercise", "");
+        String json = sharedpref.getString("exercise", "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

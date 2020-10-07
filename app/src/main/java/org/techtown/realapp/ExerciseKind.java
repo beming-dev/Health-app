@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ExcerciseKind extends AppCompatActivity {
+public class ExerciseKind extends AppCompatActivity {
     CheckBox checkBox;
 
     @Override

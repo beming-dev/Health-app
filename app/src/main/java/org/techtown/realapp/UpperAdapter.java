@@ -91,7 +91,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
                     exercise.get(position).unchoice();
                 }
 
-                SaveExcerciseData(exercise);
+                SaveExerciseData(exercise);
             }
         });
     }
@@ -118,21 +118,21 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         }
     }
 
-    private void SaveExcerciseData(ArrayList<Ex> excercise) {
+    private void SaveExerciseData(ArrayList<Ex> exercise) {
         SharedPreferences preferences = mcontext.getSharedPreferences("ExEx", mcontext.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Ex>>() {
         }.getType();
-        String json = gson.toJson(excercise, type);
+        String json = gson.toJson(exercise, type);
         editor.putString("ex", json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExcerciseData() {
+    private ArrayList<Ex> ReadExerciseData() {
         SharedPreferences preferences = mcontext.getSharedPreferences("ExEx", mcontext.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = preferences.getString("excercise", "");
+        String json = preferences.getString("exercise", "");
         Type type = new TypeToken<ArrayList<Ex>>() {
         }.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);

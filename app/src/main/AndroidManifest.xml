@@ -25,8 +25,8 @@
         <activity android:name=".Core"></activity>
         <activity android:name=".RoutineNumber"></activity>
         <activity android:name=".MyActivity"></activity>
-        <activity android:name=".TodayExcercise"></activity>
+        <activity android:name=".TodayExercise"></activity>
         <activity android:name=".TodayEx"></activity>
-        <activity android:name=".ExcerciseKind"></activity>
+        <activity android:name=".ExerciseKind"></activity>
     </application>
 </manifest>

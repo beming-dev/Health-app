@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 public class RoutineNumber extends AppCompatActivity {
-    ArrayList<Ex> excercise;
+    ArrayList<Ex> exercise;
     static int itcalled = 0;
     TextView textView_day1;
     TextView textView_day2;
@@ -48,16 +48,16 @@ public class RoutineNumber extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        excercise = ReadExcerciseData();
+        exercise = ReadExerciseData();
 
         //처음 이 activity 호출되면 초기화 / 곧 지울 수 있음.
         itcalled++;
         if(itcalled == 1){
-            for(int i=0; i<excercise.size(); i++){
+            for(int i=0; i<exercise.size(); i++){
 //                Upper.upperEx[i] = new Ex();
 //                Upper.upperEx[i].choosed = 0;
 //                Upper.upperEx[i].name = null;
-                excercise.get(i).init();
+                exercise.get(i).init();
             }
         }
 
@@ -140,14 +140,14 @@ public class RoutineNumber extends AppCompatActivity {
             switch(requestCode) {
                 case 1111:
                     Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
-                    for(int i=0; i<excercise.size(); i++){
-                        textView_day1.append(excercise.get(i).getName().toString() + "\n");
+                    for(int i=0; i<exercise.size(); i++){
+                        textView_day1.append(exercise.get(i).getName().toString() + "\n");
                     }
                     break;
                 case 2222:
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<8; i++){
-                        textView_day2.append(excercise.get(i).getName().toString() + "\n");
+                        textView_day2.append(exercise.get(i).getName().toString() + "\n");
 //                        if(Upper.upperEx[i].choosed == 1 && Upper.upperEx[i].name != null) {
 //                            Upper.upperEx[i].choosed++;
 //                            textView_day2.append(Upper.upperEx[i].name);
@@ -173,32 +173,32 @@ public class RoutineNumber extends AppCompatActivity {
                 case 3333:
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<8; i++){
-                        textView_day3.append(excercise.get(i).getName().toString() + "\n");
+                        textView_day3.append(exercise.get(i).getName().toString() + "\n");
                     }
                     break;
                 case 4444:
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<8; i++){
-                        textView_day4.append(excercise.get(i).getName().toString() + "\n");
+                        textView_day4.append(exercise.get(i).getName().toString() + "\n");
                     }
                     break;
             }
         }
     }
 
-    private void SaveExcerciseData(ArrayList<Ex> excercise){
-        SharedPreferences preferences = getSharedPreferences("excercise", MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences preferences = getSharedPreferences("exercise", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(excercise);
-        editor.putString("excercise", json);
+        String json = gson.toJson(exercise);
+        editor.putString("exercise", json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExcerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences("excercise", MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData() {
+        SharedPreferences sharedpref = getSharedPreferences("exercise", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString("excercise", "");
+        String json = sharedpref.getString("exercise", "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
