@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Lower extends AppCompatActivity {
     ArrayList<Ex> upperEx = new ArrayList<Ex>();
 
-    private RecyclerView mRecylcerView;
+    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<LowerAdapter.MyData> myDataset;
@@ -27,16 +27,16 @@ public class Lower extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lower);
-        mRecylcerView = (RecyclerView) findViewById(R.id.lower_recycler);
+        mRecyclerView = (RecyclerView) findViewById(R.id.lower_recycler);
 
-        mRecylcerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
-        mRecylcerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         myDataset = new ArrayList<>();
         mAdapter = new LowerAdapter(myDataset, this);
-        mRecylcerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);
 
 //        for(int i=0; i<8; i++){
 //            lowerEx[i] = new Ex();
