@@ -22,7 +22,7 @@ public class Diet extends AppCompatActivity {
     private RecyclerView mRecylcerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<CoreAdapter.MyData> myDataset;
+    private ArrayList<DietAdapter.MyData> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class Diet extends AppCompatActivity {
         int requestCode = intent.getExtras().getInt("requestCode");
 
         myDataset = new ArrayList<>();
-        mAdapter = new CoreAdapter(myDataset, this, requestCode);
+        mAdapter = new DietAdapter(myDataset, this, requestCode);
         mRecylcerView.setAdapter(mAdapter);
 
         switch (requestCode){
@@ -58,7 +58,7 @@ public class Diet extends AppCompatActivity {
         }
 
         for(int i = Constants.EX_DIET_START; i<Constants.EX_CORE_START; i++){
-            myDataset.add(new CoreAdapter.MyData(exercise.get(i).getName(), false));
+            myDataset.add(new DietAdapter.MyData(exercise.get(i).getName(), false));
         }
 
         Button button = findViewById(R.id.select_diet);

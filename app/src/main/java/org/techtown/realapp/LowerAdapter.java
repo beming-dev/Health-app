@@ -21,7 +21,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> {
 
-    private ArrayList<MyData> mDataset;
+    private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise;
     private Context mContext;
     private int requestCode;
@@ -39,7 +39,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public LowerAdapter(ArrayList<MyData> myDataset, Context mcontext, int requestCode) {
-        mDataset = myDataset;
+        mDataSet = myDataset;
         this.mContext = mcontext;
         this.requestCode = requestCode;
     }
@@ -53,11 +53,6 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position).text);
-        holder.cbSelect.setChecked(mDataset.get(position).isSelected());
-        holder.cbSelect.setVisibility(View.VISIBLE);
-        holder.cbSelect.setOnCheckedChangeListener(null);
-
         switch(requestCode){
             case 1111:
                 exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
@@ -76,12 +71,22 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
                 key_save = Constants.EX_SHP_KEY_day1;
                 break;
         }
+        if(exercise.get(position + Constants.EX_LOWER_START).getChoosed() ==1){
+            mDataSet.get(position).setSelected(true);
+        }
+
+        holder.mTextView.setText(mDataSet.get(position).text);
+        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
+        holder.cbSelect.setVisibility(View.VISIBLE);
+        holder.cbSelect.setOnCheckedChangeListener(null);
+
+
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mDataset.get(position).setSelected(b);
-                if(mDataset.get(position).isSelected){
+                mDataSet.get(position).setSelected(b);
+                if(mDataSet.get(position).isSelected){
                     exercise.get(position + Constants.EX_LOWER_START).choice();
                 }else{
                     exercise.get(position + Constants.EX_LOWER_START).unchoice();
@@ -92,7 +97,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
     static class MyData{

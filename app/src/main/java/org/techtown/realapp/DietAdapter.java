@@ -59,12 +59,6 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     public void onBindViewHolder(ViewHolder holder, final int position) {
-
-        holder.mTextView.setText(mDataSet.get(position).text);
-        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
-        holder.cbSelect.setVisibility(View.VISIBLE);
-        holder.cbSelect.setOnCheckedChangeListener(null);
-
         switch(requestCode){
             case 1111:
                 exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
@@ -83,6 +77,16 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
                 key_save = Constants.EX_SHP_KEY_day4;
                 break;
         }
+        if(exercise.get(position + Constants.EX_DIET_START).getChoosed() ==1){
+            mDataSet.get(position).setSelected(true);
+        }
+
+        holder.mTextView.setText(mDataSet.get(position).text);
+        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
+        holder.cbSelect.setVisibility(View.VISIBLE);
+        holder.cbSelect.setOnCheckedChangeListener(null);
+
+
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
