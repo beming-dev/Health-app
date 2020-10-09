@@ -47,21 +47,13 @@ public class Upper extends AppCompatActivity {
         mAdapter = new UpperAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-//        upperEx[0].name = "푸쉬 업";
         myDataset.add(new UpperAdapter.MyData(("푸쉬 업"), false));
-//        upperEx[1].name = "풀업";
         myDataset.add(new UpperAdapter.MyData(("풀업"),  false));
-//        upperEx[2].name = "윗몸 일으키기";
         myDataset.add(new UpperAdapter.MyData(("윗몸 일으키기"),  false));
-//        upperEx[3].name = "ㅁ";
         myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-//       upperEx[4].name = "ㅁ";
         myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-//        upperEx[5].name = "ㅁ";
         myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-//        upperEx[6].name = "ㅁ";
         myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-//        upperEx[7].name = "ㅁ";
 
         Button button = findViewById(R.id.select_upper);
         button.setOnClickListener(new View.OnClickListener() {

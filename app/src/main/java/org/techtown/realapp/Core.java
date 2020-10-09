@@ -38,33 +38,17 @@ public class Core extends AppCompatActivity {
         mAdapter = new CoreAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-//        for(int i=0; i<8; i++){
-//            coreEx[i] = new Ex();
-//            coreEx[i].choosed = 0;
-//            coreEx[i].name = null;
-//        }
-
         upperEx = ReadExerciseData();
 
         SaveExerciseData(upperEx);
 
-
-
-//        coreEx[0].name = "플랭크";
         myDataset.add(new CoreAdapter.MyData(("플랭크"), false));
-//        coreEx[1].name = "크런치";
         myDataset.add(new CoreAdapter.MyData(("크런치"),  false));
-//        coreEx[2].name = "할로우바디홀드";
         myDataset.add(new CoreAdapter.MyData(("할로우바디홀드"),  false));
-//        coreEx[3].name = "레그레이즈";
         myDataset.add(new CoreAdapter.MyData(("레그레이즈"),  false));
-//        coreEx[4].name = "ㅁ";
         myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-//        coreEx[5].name = "ㅁ";
         myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-//        coreEx[6].name = "ㅁ";
         myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-//        coreEx[7].name = "ㅁ";
         myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
 
         Button button = findViewById(R.id.select_core);

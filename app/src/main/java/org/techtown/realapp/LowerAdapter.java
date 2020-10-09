@@ -71,6 +71,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
 //                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
+                SaveExerciseData(exercise);
             }
         });
     }

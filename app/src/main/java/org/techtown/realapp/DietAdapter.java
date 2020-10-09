@@ -40,7 +40,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     public DietAdapter(ArrayList<MyData> myDataset, Context mcontext) {
         mDataset = myDataset;
-        mcontext = mcontext;
+        this.mcontext = mcontext;
     }
 
     @Override
@@ -71,6 +71,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 //                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
+                SaveExerciseData(exercise);
             }
         });
     }

@@ -40,7 +40,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 
     public CoreAdapter(ArrayList<MyData> myDataset, Context mcontext) {
         mDataset = myDataset;
-        mcontext = mcontext;
+        this.mcontext = mcontext;
     }
 
     @Override
@@ -71,6 +71,8 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 //                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
+
+                SaveExerciseData(exercise);
             }
         });
     }

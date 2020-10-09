@@ -38,27 +38,15 @@ public class Lower extends AppCompatActivity {
         mAdapter = new LowerAdapter(myDataset, this);
         mRecyclerView.setAdapter(mAdapter);
 
-//        for(int i=0; i<8; i++){
-//            lowerEx[i] = new Ex();
-//            lowerEx[i].choosed = 0;
-//            lowerEx[i].name = null;
-//        }
-
         upperEx = ReadExerciseData();
 
         SaveExerciseData(upperEx);
 
-//        lowerEx[0].name = "스쿼트";
         myDataset.add(new LowerAdapter.MyData(("스쿼트"), false));
-//        lowerEx[1].name = "양발 런지";
         myDataset.add(new LowerAdapter.MyData(("양발 런지"), false));
-//        lowerEx[2].name = "오른발 런지";
         myDataset.add(new LowerAdapter.MyData(("오른발 런지"), false));
-//        lowerEx[3].name = "왼발 런지";
         myDataset.add(new LowerAdapter.MyData(("왼발 런지"), false));
-//        lowerEx[4].name = "ㅁ";
         myDataset.add(new LowerAdapter.MyData(("ㅁ"), false));
-//        lowerEx[5].name = "ㅁ";
         myDataset.add(new LowerAdapter.MyData(("ㅁ"), false));
 
         Button button = findViewById(R.id.select_lower);

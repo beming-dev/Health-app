@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,16 +18,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Routine"></activity>
-        <activity android:name=".Routine_1"></activity>
-        <activity android:name=".Lower"></activity>
-        <activity android:name=".Upper"></activity>
-        <activity android:name=".Diet"></activity>
-        <activity android:name=".Core"></activity>
-        <activity android:name=".RoutineNumber"></activity>
-        <activity android:name=".MyActivity"></activity>
-        <activity android:name=".TodayExercise"></activity>
-        <activity android:name=".TodayEx"></activity>
-        <activity android:name=".ExerciseKind"></activity>
+        <activity android:name=".Routine"/>
+        <activity android:name=".Routine_1"/>
+        <activity android:name=".Lower"/>
+        <activity android:name=".Upper"/>
+        <activity android:name=".Diet"/>
+        <activity android:name=".Core"/>
+        <activity android:name=".RoutineNumber"/>
+        <activity android:name=".MyActivity"/>
+        <activity android:name=".TodayExercise"/>
+        <activity android:name=".TodayEx"/>
+        <activity android:name=".ExerciseKind"/>
     </application>
 </manifest>
