@@ -26,7 +26,6 @@ public class Upper extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upper);
         mRecylcerView = (RecyclerView) findViewById(R.id.upper_recycler);

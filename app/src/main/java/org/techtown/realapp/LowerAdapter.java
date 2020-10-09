@@ -60,15 +60,15 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
                 break;
             case 2222:
                 exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
-                key_save = Constants.EX_SHP_KEY_day1;
+                key_save = Constants.EX_SHP_KEY_day2;
                 break;
             case 3333:
                 exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
-                key_save = Constants.EX_SHP_KEY_day1;
+                key_save = Constants.EX_SHP_KEY_day3;
                 break;
             case 4444:
                 exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
-                key_save = Constants.EX_SHP_KEY_day1;
+                key_save = Constants.EX_SHP_KEY_day4;
                 break;
         }
         if(exercise.get(position + Constants.EX_LOWER_START).getChoosed() ==1){
