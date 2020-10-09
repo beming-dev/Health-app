@@ -49,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_myroutine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         btn_maderoutine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,22 +77,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise) {
-        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.apply();
-    }
-
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = preferences.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>() {
-        }.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

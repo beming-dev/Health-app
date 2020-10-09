@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Core extends AppCompatActivity {
-    ArrayList<Ex> upperEx = new ArrayList<Ex>();
+    ArrayList<Ex> exercise = new ArrayList<Ex>();
 
     private RecyclerView mRecylcerView;
     private RecyclerView.Adapter mAdapter;
@@ -38,18 +38,11 @@ public class Core extends AppCompatActivity {
         mAdapter = new CoreAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-        upperEx = ReadExerciseData();
+        exercise = ReadExerciseData();
 
-        SaveExerciseData(upperEx);
-
-        myDataset.add(new CoreAdapter.MyData(("플랭크"), false));
-        myDataset.add(new CoreAdapter.MyData(("크런치"),  false));
-        myDataset.add(new CoreAdapter.MyData(("할로우바디홀드"),  false));
-        myDataset.add(new CoreAdapter.MyData(("레그레이즈"),  false));
-        myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new CoreAdapter.MyData(("ㅁ"),  false));
+        for(int i=Constants.EX_CORE_START; i<exercise.size(); i++){
+            myDataset.add(new CoreAdapter.MyData(exercise.get(i).getName(), false));
+        }
 
         Button button = findViewById(R.id.select_core);
         button.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Upper extends AppCompatActivity {
-    ArrayList<Ex> upperEx = new ArrayList<Ex>();
+    ArrayList<Ex> exercise = new ArrayList<Ex>();
 
     private RecyclerView mRecylcerView;
     private RecyclerView.Adapter mAdapter;
@@ -46,13 +46,11 @@ public class Upper extends AppCompatActivity {
         mAdapter = new UpperAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-        myDataset.add(new UpperAdapter.MyData(("푸쉬 업"), false));
-        myDataset.add(new UpperAdapter.MyData(("풀업"),  false));
-        myDataset.add(new UpperAdapter.MyData(("윗몸 일으키기"),  false));
-        myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new UpperAdapter.MyData(("ㅁ"),  false));
+        exercise = ReadExerciseData();
+
+        for(int i=Constants.EX_UPPER_START; i<Constants.EX_LOWER_START; i++){
+            myDataset.add(new UpperAdapter.MyData(exercise.get(i).getName(), false));
+        }
 
         Button button = findViewById(R.id.select_upper);
         button.setOnClickListener(new View.OnClickListener() {
@@ -62,5 +60,24 @@ public class Upper extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(exercise);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
+        editor.commit();
+    }
+
+    private ArrayList<Ex> ReadExerciseData() {
+        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
+        ArrayList<Ex> arrayList = gson.fromJson(json, type);
+
+        return arrayList;
     }
 }

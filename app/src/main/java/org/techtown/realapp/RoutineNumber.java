@@ -21,10 +21,6 @@ import java.util.ArrayList;
 
 public class RoutineNumber extends AppCompatActivity {
     ArrayList<Ex> exercise;
-    TextView textView_day1;
-    TextView textView_day2;
-    TextView textView_day3;
-    TextView textView_day4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

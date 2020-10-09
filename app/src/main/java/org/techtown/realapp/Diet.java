@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Diet extends AppCompatActivity {
-    ArrayList<Ex> upperEx = new ArrayList<Ex>();
+    ArrayList<Ex> exercise = new ArrayList<Ex>();
 
     private RecyclerView mRecylcerView;
     private RecyclerView.Adapter mAdapter;
@@ -38,18 +38,11 @@ public class Diet extends AppCompatActivity {
         mAdapter = new DietAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-        upperEx = ReadExerciseData();
+        exercise = ReadExerciseData();
 
-        SaveExerciseData(upperEx);
-
-        myDataset.add(new DietAdapter.MyData(("버피 테스트"), false));
-        myDataset.add(new DietAdapter.MyData(("슬로우 버피"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
-        myDataset.add(new DietAdapter.MyData(("ㅁ"),  false));
+        for(int i=Constants.EX_UPPER_START; i<Constants.EX_LOWER_START; i++){
+            myDataset.add(new DietAdapter.MyData(exercise.get(i).getName(), false));
+        }
 
         Button button = findViewById(R.id.select_diet);
         button.setOnClickListener(new View.OnClickListener() {
