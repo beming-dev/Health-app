@@ -65,9 +65,9 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
                 mDataset.get(position).setSelected(b);
 
                 if(mDataset.get(position).isSelected){
-                    exercise.get(position).choice();
+                    exercise.get(position + Constants.EX_DIET_START).choice();
                 }else{
-                    exercise.get(position).unchoice();
+                    exercise.get(position + Constants.EX_DIET_START).unchoice();
                 }
                 SaveExerciseData(exercise);
             }

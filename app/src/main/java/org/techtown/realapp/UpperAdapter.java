@@ -70,9 +70,9 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mDataSet.get(position).setSelected(b);
                 if (mDataSet.get(position).isSelected) {
-                    exercise.get(position).choice();
+                    exercise.get(position + Constants.EX_UPPER_START).choice();
                 } else {
-                    exercise.get(position).unchoice();
+                    exercise.get(position + + Constants.EX_UPPER_START).unchoice();
                 }
                 SaveExerciseData(exercise);
             }

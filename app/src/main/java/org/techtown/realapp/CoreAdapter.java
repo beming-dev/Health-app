@@ -65,9 +65,9 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
                 mDataset.get(position).setSelected(b);
 
                 if(mDataset.get(position).isSelected){
-                    exercise.get(position).choice();
+                    exercise.get(position + Constants.EX_CORE_START).choice();
                 }else{
-                    exercise.get(position).unchoice();
+                    exercise.get(position + Constants.EX_CORE_START).unchoice();
                 }
 
                 SaveExerciseData(exercise);
@@ -98,8 +98,8 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
@@ -107,9 +107,9 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
