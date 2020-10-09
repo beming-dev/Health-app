@@ -23,7 +23,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataset;
     private ArrayList<Ex> exercise;
-    private Context mcontext;
+    private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -40,7 +40,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     public DietAdapter(ArrayList<MyData> myDataset, Context mcontext) {
         mDataset = myDataset;
-        this.mcontext = mcontext;
+        this.mContext = mcontext;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
@@ -106,7 +106,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences sharedpref = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();

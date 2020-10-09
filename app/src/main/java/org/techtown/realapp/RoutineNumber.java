@@ -122,58 +122,44 @@ public class RoutineNumber extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode) {
                 case 1111:
-                    Toast.makeText(getApplicationContext(), "1번 받음" + exercise.get(1).getChoosed(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1) {
+                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
                             textView_day1.append(exercise.get(i).getName()+ "\n");
+                            //중복으로 tv에 적히는거 막기 위함.
+                            exercise.get(i).written(); 
                         }
                     }
                     break;
                 case 2222:
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1) {
-                            textView_day2.append(exercise.get(i).getName() + "\n");
+                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                            textView_day2.append(exercise.get(i).getName()+ "\n");
+                            exercise.get(i).written();
                         }
-//                        if(Upper.upperEx[i].choosed == 1 && Upper.upperEx[i].name != null) {
-//                            Upper.upperEx[i].choosed++;
-//                            textView_day2.append(Upper.upperEx[i].name);
-//                            textView_day2.append("\n");
-//                        }
-//                        if(Lower.lowerEx[i].choosed == 1 && Lower.lowerEx[i].name != null) {
-//                            Lower.lowerEx[i].choosed++;
-//                            textView_day2.append(Lower.lowerEx[i].name);
-//                            textView_day2.append("\n");
-//                        }
-//                        if(Core.coreEx[i].choosed == 1 && Core.coreEx[i].name != null) {
-//                            Core.coreEx[i].choosed++;
-//                            textView_day2.append(Core.coreEx[i].name);
-//                            textView_day2.append("\n");
-//                        }
-//                        if(Diet.dietEx[i].choosed == 1 && Diet.dietEx[i].name != null) {
-//                            Diet.dietEx[i].choosed++;
-//                            textView_day2.append(Diet.dietEx[i].name);
-//                            textView_day2.append("\n");
-//                        }
                     }
                     break;
                 case 3333:
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1) {
-                            textView_day3.append(exercise.get(i).getName() + "\n");
+                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                            textView_day3.append(exercise.get(i).getName()+ "\n");
+                            exercise.get(i).written();
                         }
                     }
                     break;
                 case 4444:
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1) {
-                            textView_day4.append(exercise.get(i).getName() + "\n");
+                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                            textView_day4.append(exercise.get(i).getName()+ "\n");
+                            exercise.get(i).written();
                         }
                     }
                     break;
             }
+            SaveExerciseData(exercise);
         }
     }
 

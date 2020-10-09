@@ -101,9 +101,9 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         }
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise) {
-        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+    private void SaveExerciseData(ArrayList<Ex> exercise){
+        SharedPreferences prefForEx = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
@@ -111,10 +111,10 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
+        SharedPreferences prefForEx = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = preferences.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>() {}.getType();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
         return arrayList;

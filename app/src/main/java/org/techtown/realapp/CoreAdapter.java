@@ -23,7 +23,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataset;
     private ArrayList<Ex> exercise;
-    private Context mcontext;
+    private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -40,7 +40,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 
     public CoreAdapter(ArrayList<MyData> myDataset, Context mcontext) {
         mDataset = myDataset;
-        this.mcontext = mcontext;
+        this.mContext = mcontext;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences prefForEx = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
@@ -107,7 +107,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     }
 
     private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+        SharedPreferences prefForEx = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
