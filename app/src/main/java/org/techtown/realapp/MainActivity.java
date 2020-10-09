@@ -62,43 +62,9 @@ public class MainActivity extends AppCompatActivity {
         "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",
         "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
-
-        //상체 운동 추가
-        exercise.add(new Ex("1"));
-        exercise.add(new Ex("2"));
-        exercise.add(new Ex("3"));
-        exercise.add(new Ex("4"));
-        exercise.add(new Ex("5"));
-        exercise.add(new Ex("6"));
-        exercise.add(new Ex("7"));
-        exercise.add(new Ex("8"));
-        //하체 운동 추가
-        exercise.add(new Ex("9"));
-        exercise.add(new Ex("10"));
-        exercise.add(new Ex("11"));
-        exercise.add(new Ex("12"));
-        exercise.add(new Ex("13"));
-        exercise.add(new Ex("14"));
-        exercise.add(new Ex("15"));
-        exercise.add(new Ex("16"));
-        //다이어트 운동 추가
-        exercise.add(new Ex("17"));
-        exercise.add(new Ex("18"));
-        exercise.add(new Ex("19"));
-        exercise.add(new Ex("20"));
-        exercise.add(new Ex("21"));
-        exercise.add(new Ex("22"));
-        exercise.add(new Ex("23"));
-        exercise.add(new Ex("24"));
-        //코어 운동 추가
-        exercise.add(new Ex("25"));
-        exercise.add(new Ex("26"));
-        exercise.add(new Ex("27"));
-        exercise.add(new Ex("28"));
-        exercise.add(new Ex("29"));
-        exercise.add(new Ex("30"));
-        exercise.add(new Ex("31"));
-        exercise.add(new Ex("32"));
+        for(int i=0; i<exNames.length; i++) {
+            exercise.add(new Ex(exNames[i]));
+        }
 
         SaveExerciseData(exercise);
     }

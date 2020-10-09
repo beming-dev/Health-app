@@ -123,38 +123,37 @@ public class RoutineNumber extends AppCompatActivity {
             switch(requestCode) {
                 case 1111:
                     Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
+                    textView_day1.setText(null);
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                        if(exercise.get(i).getChoosed() == 1) {
                             textView_day1.append(exercise.get(i).getName()+ "\n");
-                            //중복으로 tv에 적히는거 막기 위함.
-                            exercise.get(i).written(); 
                         }
                     }
                     break;
                 case 2222:
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
+                    textView_day2.setText(null);
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                        if(exercise.get(i).getChoosed() == 1) {
                             textView_day2.append(exercise.get(i).getName()+ "\n");
-                            exercise.get(i).written();
                         }
                     }
                     break;
                 case 3333:
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
+                    textView_day3.setText(null);
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                        if(exercise.get(i).getChoosed() == 1) {
                             textView_day3.append(exercise.get(i).getName()+ "\n");
-                            exercise.get(i).written();
                         }
                     }
                     break;
                 case 4444:
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
+                    textView_day4.setText(null);
                     for(int i=0; i<exercise.size(); i++){
-                        if(exercise.get(i).getChoosed() == 1 && exercise.get(i).getwritten() !=1) {
+                        if(exercise.get(i).getChoosed() == 1) {
                             textView_day4.append(exercise.get(i).getName()+ "\n");
-                            exercise.get(i).written();
                         }
                     }
                     break;
