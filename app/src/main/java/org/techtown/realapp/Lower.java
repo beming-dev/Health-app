@@ -42,7 +42,20 @@ public class Lower extends AppCompatActivity {
         mAdapter = new LowerAdapter(myDataset, this, requestCode);
         mRecyclerView.setAdapter(mAdapter);
 
-        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+        switch (requestCode){
+            case 1111:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                break;
+            case 2222:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                break;
+            case 3333:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                break;
+            case 4444:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                break;
+        }
 
         for(int i = Constants.EX_LOWER_START; i<Constants.EX_CORE_START; i++){
             myDataset.add(new LowerAdapter.MyData(exercise.get(i).getName(), false));

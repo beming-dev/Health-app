@@ -64,10 +64,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public static void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("MyAdapter", "onActivityResult");
-    }
-
     public MyAdapter(ArrayList<MyData> myDataset, int requestCode) {
         mDataset = myDataset;
         this.requestCode = requestCode;
