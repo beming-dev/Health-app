@@ -21,6 +21,10 @@ import java.util.ArrayList;
 
 public class RoutineNumber extends AppCompatActivity {
     ArrayList<Ex> exercise;
+    TextView textView_day1;
+    TextView textView_day2;
+    TextView textView_day3;
+    TextView textView_day4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +40,14 @@ public class RoutineNumber extends AppCompatActivity {
         Button btn_day3 = findViewById(R.id.btn_day3);
         Button btn_day4 = findViewById(R.id.btn_day4);
 
+        //complete -> mainActivity
         Intent intent = getIntent();
 
         Button complete = findViewById(R.id.complete);
-
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Routine이 생성됐습니다. 내 루틴을 확인하세요.", Toast.LENGTH_LONG);
                 Intent send_intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(send_intent);
             }
