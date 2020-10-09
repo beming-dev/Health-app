@@ -81,24 +81,28 @@ public class RoutineNumber extends AppCompatActivity {
         btn_day1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_intent.putExtra("requestCode", 1111);
                 startActivityForResult(btn_intent, 1111);
             }
         });
         btn_day2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_intent.putExtra("requestCode", 2222);
                 startActivityForResult(btn_intent, 2222);
             }
         });
         btn_day3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_intent.putExtra("requestCode", 3333);
                 startActivityForResult(btn_intent, 3333);
             }
         });
         btn_day4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_intent.putExtra("requestCode", 4444);
                 startActivityForResult(btn_intent, 4444);
             }
         });
@@ -108,8 +112,6 @@ public class RoutineNumber extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        exercise = ReadExerciseData();
-
         TextView textView_day1 = findViewById(R.id.textview_day1);
         TextView textView_day2 = findViewById(R.id.textview_day2);
         TextView textView_day3 = findViewById(R.id.textview_day3);
@@ -118,59 +120,66 @@ public class RoutineNumber extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode) {
                 case 1111:
+                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
                     Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
                     textView_day1.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day1.append(exercise.get(i).getName()+ "\n");
+                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
                         }
                     }
                     break;
                 case 2222:
+                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
                     textView_day2.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day2.append(exercise.get(i).getName()+ "\n");
+                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
                         }
                     }
                     break;
                 case 3333:
+                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
                     textView_day3.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day3.append(exercise.get(i).getName()+ "\n");
+                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
                         }
                     }
                     break;
                 case 4444:
+                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
                     textView_day4.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day4.append(exercise.get(i).getName()+ "\n");
+                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
                         }
                     }
                     break;
             }
-            SaveExerciseData(exercise);
         }
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

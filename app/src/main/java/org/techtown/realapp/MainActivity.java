@@ -17,7 +17,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Ex> exercise = new ArrayList<Ex>();
+    ArrayList<Ex> exercise_day1 = new ArrayList<Ex>();
+    ArrayList<Ex> exercise_day2 = new ArrayList<Ex>();
+    ArrayList<Ex> exercise_day3 = new ArrayList<Ex>();
+    ArrayList<Ex> exercise_day4 = new ArrayList<Ex>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +73,21 @@ public class MainActivity extends AppCompatActivity {
         "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
         for(int i=0; i<exNames.length; i++) {
-            exercise.add(new Ex(exNames[i]));
+            exercise_day1.add(new Ex(exNames[i]));
+            exercise_day2.add(new Ex(exNames[i]));
+            exercise_day3.add(new Ex(exNames[i]));
+            exercise_day4.add(new Ex(exNames[i]));
         }
 
-        SaveExerciseData(exercise);
+        SaveExerciseData(exercise_day1, Constants.EX_SHP_KEY_day1);
+        SaveExerciseData(exercise_day2, Constants.EX_SHP_KEY_day2);
+        SaveExerciseData(exercise_day3, Constants.EX_SHP_KEY_day3);
+        SaveExerciseData(exercise_day4, Constants.EX_SHP_KEY_day4);
+
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise) {
-        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);

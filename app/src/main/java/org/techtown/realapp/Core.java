@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -34,11 +35,14 @@ public class Core extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecylcerView.setLayoutManager(mLayoutManager);
 
+        Intent intent = getIntent();
+        int requestCode = intent.getExtras().getInt("requestCode");
+
         myDataset = new ArrayList<>();
-        mAdapter = new CoreAdapter(myDataset, this);
+        mAdapter = new CoreAdapter(myDataset, this, requestCode);
         mRecylcerView.setAdapter(mAdapter);
 
-        exercise = ReadExerciseData();
+        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
 
         for(int i=Constants.EX_CORE_START; i<exercise.size(); i++){
             myDataset.add(new CoreAdapter.MyData(exercise.get(i).getName(), false));
@@ -54,19 +58,10 @@ public class Core extends AppCompatActivity {
         });
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 

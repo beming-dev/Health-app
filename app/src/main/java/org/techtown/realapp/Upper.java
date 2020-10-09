@@ -7,17 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -42,13 +36,16 @@ public class Upper extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecylcerView.setLayoutManager(mLayoutManager);
 
+        Intent intent = getIntent();
+        int requestCode = intent.getExtras().getInt("requestCode");
+
         myDataset = new ArrayList<>();
-        mAdapter = new UpperAdapter(myDataset, this);
+        mAdapter = new UpperAdapter(myDataset, this, requestCode);
         mRecylcerView.setAdapter(mAdapter);
 
-        exercise = ReadExerciseData();
+        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
 
-        for(int i=Constants.EX_UPPER_START; i<Constants.EX_LOWER_START; i++){
+        for(int i = Constants.EX_UPPER_START; i<Constants.EX_LOWER_START; i++){
             myDataset.add(new UpperAdapter.MyData(exercise.get(i).getName(), false));
         }
 
@@ -62,17 +59,9 @@ public class Upper extends AppCompatActivity {
         });
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
 
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences prefForEx = getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();

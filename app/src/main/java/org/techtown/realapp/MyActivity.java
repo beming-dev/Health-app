@@ -4,6 +4,7 @@ package org.techtown.realapp;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import android.content.Intent;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
@@ -28,8 +29,11 @@ public class MyActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        Intent intent = getIntent();
+        int requestCode = intent.getExtras().getInt("requestCode");
+
         myDataset = new ArrayList<>();
-        mAdapter = new MyAdapter(myDataset);
+        mAdapter = new MyAdapter(myDataset,requestCode);
         mRecyclerView.setAdapter(mAdapter);
 
         myDataset.add(new MyAdapter.MyData(getString(R.string.upper), R.drawable.btn));

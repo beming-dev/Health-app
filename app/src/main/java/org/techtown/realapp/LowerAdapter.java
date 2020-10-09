@@ -23,7 +23,9 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
 
     private ArrayList<MyData> mDataset;
     private ArrayList<Ex> exercise;
-    private Context mcontext;
+    private Context mContext;
+    private int requestCode;
+    String key_save;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -36,9 +38,10 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
         }
     }
 
-    public LowerAdapter(ArrayList<MyData> myDataset, Context mcontext) {
+    public LowerAdapter(ArrayList<MyData> myDataset, Context mcontext, int requestCode) {
         mDataset = myDataset;
-        this.mcontext = mcontext;
+        this.mContext = mcontext;
+        this.requestCode = requestCode;
     }
 
     @Override
@@ -55,7 +58,24 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
 
-        exercise = ReadExerciseData();
+        switch(requestCode){
+            case 1111:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                key_save = Constants.EX_SHP_KEY_day1;
+                break;
+            case 2222:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                key_save = Constants.EX_SHP_KEY_day1;
+                break;
+            case 3333:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                key_save = Constants.EX_SHP_KEY_day1;
+                break;
+            case 4444:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                key_save = Constants.EX_SHP_KEY_day1;
+                break;
+        }
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -66,7 +86,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
                 }else{
                     exercise.get(position + Constants.EX_LOWER_START).unchoice();
                 }
-                SaveExerciseData(exercise);
+                SaveExerciseData(exercise, key_save);
             }
         });
     }
@@ -93,8 +113,8 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
         }
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
@@ -102,8 +122,8 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences prefForEx = mcontext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();

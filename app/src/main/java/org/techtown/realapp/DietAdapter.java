@@ -21,64 +21,88 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
-    private ArrayList<MyData> mDataset;
-    private ArrayList<Ex> exercise;
+    private ArrayList<MyData> mDataSet;
+    private ArrayList<Ex> exercise = null;
     private Context mContext;
+    private int requestCode;
+    String key_save;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
         public CheckBox cbSelect;
 
         public ViewHolder(View view) {
             super(view);
-            mTextView = (TextView) view.findViewById(R.id.textView);
-            cbSelect = (CheckBox) view.findViewById(R.id.check_exercise);
-
-            int pos = getAdapterPosition();
+            mTextView = view.findViewById(R.id.textView);
+            cbSelect = view.findViewById(R.id.check_exercise);
+//            SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
+//
+//            //Creating editor to store values to shared preferences
+//            SharedPreferences.Editor editor = sharedPreferences1.edit();
+//            editor.putBoolean("check", cbSelect.isChecked());
+//            editor.apply();
         }
     }
 
-    public DietAdapter(ArrayList<MyData> myDataset, Context mcontext) {
-        mDataset = myDataset;
-        this.mContext = mcontext;
+    public DietAdapter(ArrayList<MyData> myDataSet, Context mContext, int requestCode) {
+        mDataSet = myDataSet;
+        this.mContext = mContext;
+        this.requestCode = requestCode;
     }
 
     @Override
-    public DietAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public DietAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercisekind, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position).text);
-        holder.cbSelect.setChecked(mDataset.get(position).isSelected());
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+
+        holder.mTextView.setText(mDataSet.get(position).text);
+        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
 
-        exercise = ReadExerciseData();
+        switch(requestCode){
+            case 1111:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                key_save = Constants.EX_SHP_KEY_day1;
+                break;
+            case 2222:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                key_save = Constants.EX_SHP_KEY_day2;
+                break;
+            case 3333:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                key_save = Constants.EX_SHP_KEY_day3;
+                break;
+            case 4444:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                key_save = Constants.EX_SHP_KEY_day4;
+                break;
+        }
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mDataset.get(position).setSelected(b);
-
-                if(mDataset.get(position).isSelected){
+                mDataSet.get(position).setSelected(b);
+                if (mDataSet.get(position).isSelected) {
                     exercise.get(position + Constants.EX_DIET_START).choice();
-                }else{
+                } else {
                     exercise.get(position + Constants.EX_DIET_START).unchoice();
                 }
-                SaveExerciseData(exercise);
+                SaveExerciseData(exercise, key_save);
             }
         });
     }
 
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
-    static class MyData{
+    static class MyData {
         public String text;
         public boolean isSelected;
 
@@ -96,19 +120,19 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         }
     }
 
-    private void SaveExerciseData(ArrayList<Ex> exercise){
-        SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
         Gson gson = new Gson();
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.commit();
     }
 
-    private ArrayList<Ex> ReadExerciseData() {
-        SharedPreferences sharedpref = mContext.getSharedPreferences(Constants.EX_SHP_KEY, MODE_PRIVATE);
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedpref.getString(Constants.EX_SHP_DATA_KEY, "");
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
         Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
