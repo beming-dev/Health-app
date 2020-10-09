@@ -21,7 +21,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> {
 
-    private ArrayList<MyData> mDataset;
+    private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise;
     private Context mcontext;
 
@@ -37,7 +37,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public LowerAdapter(ArrayList<MyData> myDataset, Context mcontext) {
-        mDataset = myDataset;
+        mDataSet = myDataset;
         this.mcontext = mcontext;
     }
 
@@ -50,18 +50,21 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position).text);
-        holder.cbSelect.setChecked(mDataset.get(position).isSelected());
+        exercise = ReadExerciseData();
+        if(exercise.get(position + Constants.EX_LOWER_START).getChoosed() ==1){
+            mDataSet.get(position).setSelected(true);
+        }
+
+        holder.mTextView.setText(mDataSet.get(position).text);
+        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
-
-        exercise = ReadExerciseData();
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mDataset.get(position).setSelected(b);
-                if(mDataset.get(position).isSelected){
+                mDataSet.get(position).setSelected(b);
+                if(mDataSet.get(position).isSelected){
                     exercise.get(position + Constants.EX_LOWER_START).choice();
                 }else{
                     exercise.get(position + Constants.EX_LOWER_START).unchoice();
@@ -72,7 +75,7 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
     }
 
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
     static class MyData{

@@ -57,13 +57,15 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
     }
 
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        exercise = ReadExerciseData();
+        if(exercise.get(position + Constants.EX_UPPER_START).getChoosed() ==1){
+            mDataSet.get(position).setSelected(true);
+        }
 
         holder.mTextView.setText(mDataSet.get(position).text);
         holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
-
-        exercise = ReadExerciseData();
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

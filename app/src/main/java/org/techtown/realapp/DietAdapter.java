@@ -21,7 +21,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
-    private ArrayList<MyData> mDataset;
+    private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise;
     private Context mContext;
 
@@ -39,7 +39,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     public DietAdapter(ArrayList<MyData> myDataset, Context mcontext) {
-        mDataset = myDataset;
+        mDataSet = myDataset;
         this.mContext = mcontext;
     }
 
@@ -52,19 +52,22 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position).text);
-        holder.cbSelect.setChecked(mDataset.get(position).isSelected());
+        exercise = ReadExerciseData();
+        if(exercise.get(position + Constants.EX_DIET_START).getChoosed() ==1){
+            mDataSet.get(position).setSelected(true);
+        }
+
+        holder.mTextView.setText(mDataSet.get(position).text);
+        holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
-
-        exercise = ReadExerciseData();
 
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mDataset.get(position).setSelected(b);
+                mDataSet.get(position).setSelected(b);
 
-                if(mDataset.get(position).isSelected){
+                if(mDataSet.get(position).isSelected){
                     exercise.get(position + Constants.EX_DIET_START).choice();
                 }else{
                     exercise.get(position + Constants.EX_DIET_START).unchoice();
@@ -75,7 +78,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
     static class MyData{
