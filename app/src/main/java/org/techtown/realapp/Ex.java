@@ -15,10 +15,10 @@ public class Ex {
         this.name = name;
     }
 
-    void choice(){ this.choosed ++; }
+    void choice(){ this.choosed = 1; }
 
     void unchoice() {
-        this.choosed --;
+        this.choosed = 0;
     }
 
     void putChoosed(int choosed){

@@ -65,10 +65,8 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
                 mDataset.get(position).setSelected(b);
 
                 if(mDataset.get(position).isSelected){
-//                    Upper.upperEx[position].choosed = 1;
                     exercise.get(position).choice();
                 }else{
-//                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
 

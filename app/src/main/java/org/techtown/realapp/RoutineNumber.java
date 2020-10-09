@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class RoutineNumber extends AppCompatActivity {
     ArrayList<Ex> exercise;
-    static int itcalled = 0;
     TextView textView_day1;
     TextView textView_day2;
     TextView textView_day3;
@@ -42,8 +41,6 @@ public class RoutineNumber extends AppCompatActivity {
         Button btn_day4 = findViewById(R.id.btn_day4);
 
         Intent intent = getIntent();
-
-        exercise = ReadExerciseData();
 
         Button complete = findViewById(R.id.complete);
 
@@ -115,6 +112,8 @@ public class RoutineNumber extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        exercise = ReadExerciseData();
+
         TextView textView_day1 = findViewById(R.id.textview_day1);
         TextView textView_day2 = findViewById(R.id.textview_day2);
         TextView textView_day3 = findViewById(R.id.textview_day3);
@@ -123,15 +122,19 @@ public class RoutineNumber extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode) {
                 case 1111:
-                    Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "1번 받음" + exercise.get(1).getChoosed(), Toast.LENGTH_SHORT).show();
                     for(int i=0; i<exercise.size(); i++){
-                        textView_day1.append(exercise.get(i).getName().toString() + "\n");
+                        if(exercise.get(i).getChoosed() == 1) {
+                            textView_day1.append(exercise.get(i).getName()+ "\n");
+                        }
                     }
                     break;
                 case 2222:
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
-                    for(int i=0; i<8; i++){
-                        textView_day2.append(exercise.get(i).getName().toString() + "\n");
+                    for(int i=0; i<exercise.size(); i++){
+                        if(exercise.get(i).getChoosed() == 1) {
+                            textView_day2.append(exercise.get(i).getName() + "\n");
+                        }
 //                        if(Upper.upperEx[i].choosed == 1 && Upper.upperEx[i].name != null) {
 //                            Upper.upperEx[i].choosed++;
 //                            textView_day2.append(Upper.upperEx[i].name);
@@ -156,14 +159,18 @@ public class RoutineNumber extends AppCompatActivity {
                     break;
                 case 3333:
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
-                    for(int i=0; i<8; i++){
-                        textView_day3.append(exercise.get(i).getName().toString() + "\n");
+                    for(int i=0; i<exercise.size(); i++){
+                        if(exercise.get(i).getChoosed() == 1) {
+                            textView_day3.append(exercise.get(i).getName() + "\n");
+                        }
                     }
                     break;
                 case 4444:
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
-                    for(int i=0; i<8; i++){
-                        textView_day4.append(exercise.get(i).getName().toString() + "\n");
+                    for(int i=0; i<exercise.size(); i++){
+                        if(exercise.get(i).getChoosed() == 1) {
+                            textView_day4.append(exercise.get(i).getName() + "\n");
+                        }
                     }
                     break;
             }

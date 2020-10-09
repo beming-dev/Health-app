@@ -56,48 +56,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Ex ex = new Ex("푸쉬업");
-        exercise.add(ex);
-
         // ToDo: 배열 사용하여 최적화할 것. 코드 너무 복잡함
         String[] exNames = {"푸쉬업", "풀업", "윗몸일으키기", "□", "□", "□", "□"};
 
         //상체 운동 추가
-        exercise.add(new Ex("푸쉬업"));
-        exercise.add(new Ex("풀업"));
-        exercise.add(new Ex("윗몸 일으키기"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
+        exercise.add(new Ex("1"));
+        exercise.add(new Ex("2"));
+        exercise.add(new Ex("3"));
+        exercise.add(new Ex("4"));
+        exercise.add(new Ex("5"));
+        exercise.add(new Ex("6"));
+        exercise.add(new Ex("7"));
+        exercise.add(new Ex("8"));
         //하체 운동 추가
-        exercise.add(new Ex("푸쉬업"));
-        exercise.add(new Ex("풀업"));
-        exercise.add(new Ex("윗몸 일으키기"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
+        exercise.add(new Ex("9"));
+        exercise.add(new Ex("10"));
+        exercise.add(new Ex("11"));
+        exercise.add(new Ex("12"));
+        exercise.add(new Ex("13"));
+        exercise.add(new Ex("14"));
+        exercise.add(new Ex("15"));
+        exercise.add(new Ex("16"));
         //다이어트 운동 추가
-        exercise.add(new Ex("푸쉬업"));
-        exercise.add(new Ex("풀업"));
-        exercise.add(new Ex("윗몸 일으키기"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
+        exercise.add(new Ex("17"));
+        exercise.add(new Ex("18"));
+        exercise.add(new Ex("19"));
+        exercise.add(new Ex("20"));
+        exercise.add(new Ex("21"));
+        exercise.add(new Ex("22"));
+        exercise.add(new Ex("23"));
+        exercise.add(new Ex("24"));
         //코어 운동 추가
-        exercise.add(new Ex("푸쉬업"));
-        exercise.add(new Ex("풀업"));
-        exercise.add(new Ex("윗몸 일으키기"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
-        exercise.add(new Ex("ㅁ"));
+        exercise.add(new Ex("25"));
+        exercise.add(new Ex("26"));
+        exercise.add(new Ex("27"));
+        exercise.add(new Ex("28"));
+        exercise.add(new Ex("29"));
+        exercise.add(new Ex("30"));
+        exercise.add(new Ex("31"));
+        exercise.add(new Ex("32"));
 
         SaveExerciseData(exercise);
     }

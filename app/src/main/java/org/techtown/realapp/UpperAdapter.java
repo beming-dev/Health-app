@@ -34,15 +34,12 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
             super(view);
             mTextView = view.findViewById(R.id.textView);
             cbSelect = view.findViewById(R.id.check_exercise);
-
-            exercise = ReadExerciseData();
-
-            SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
-
-            //Creating editor to store values to shared preferences
-            SharedPreferences.Editor editor = sharedPreferences1.edit();
-            editor.putBoolean("check", cbSelect.isChecked());
-            editor.apply();
+//            SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
+//
+//            //Creating editor to store values to shared preferences
+//            SharedPreferences.Editor editor = sharedPreferences1.edit();
+//            editor.putBoolean("check", cbSelect.isChecked());
+//            editor.apply();
         }
     }
 
@@ -65,20 +62,18 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         holder.cbSelect.setChecked(mDataSet.get(position).isSelected());
         holder.cbSelect.setVisibility(View.VISIBLE);
         holder.cbSelect.setOnCheckedChangeListener(null);
+
+        exercise = ReadExerciseData();
+
         holder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
                 mDataSet.get(position).setSelected(b);
                 if (mDataSet.get(position).isSelected) {
-//                    Upper.upperEx[position].choosed = 1;
-                    Log.d("HEALTH_APP", exercise + "B");
                     exercise.get(position).choice();
                 } else {
-//                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
-
                 SaveExerciseData(exercise);
             }
         });
@@ -110,10 +105,8 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Ex>>() {
-        }.getType();
-        String json = gson.toJson(exercise, type);
-        editor.putString("ex", json);
+        String json = gson.toJson(exercise);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.commit();
     }
 
@@ -121,8 +114,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
         SharedPreferences preferences = mContext.getSharedPreferences(Constants.EX_SHP_KEY, mContext.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = preferences.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>() {
-        }.getType();
+        Type type = new TypeToken<ArrayList<Ex>>() {}.getType();
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
         return arrayList;

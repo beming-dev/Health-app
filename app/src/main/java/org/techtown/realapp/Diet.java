@@ -38,12 +38,6 @@ public class Diet extends AppCompatActivity {
         mAdapter = new DietAdapter(myDataset, this);
         mRecylcerView.setAdapter(mAdapter);
 
-//        for(int i=0; i<8; i++){
-//            dietEx[i] = new Ex();
-//            dietEx[i].choosed = 0;
-//            dietEx[i].name = null;
-//        }
-
         upperEx = ReadExerciseData();
 
         SaveExerciseData(upperEx);

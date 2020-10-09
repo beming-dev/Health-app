@@ -33,14 +33,12 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
             super(view);
             mTextView = (TextView) view.findViewById(R.id.textView);
             cbSelect = (CheckBox) view.findViewById(R.id.check_exercise);
-
-            int pos = getAdapterPosition();
         }
     }
 
     public LowerAdapter(ArrayList<MyData> myDataset, Context mcontext) {
         mDataset = myDataset;
-        mcontext = mcontext;
+        this.mcontext = mcontext;
     }
 
     @Override
@@ -63,12 +61,9 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mDataset.get(position).setSelected(b);
-
                 if(mDataset.get(position).isSelected){
-//                    Upper.upperEx[position].choosed = 1;
                     exercise.get(position).choice();
                 }else{
-//                    Upper.upperEx[position].choosed = 0;
                     exercise.get(position).unchoice();
                 }
                 SaveExerciseData(exercise);
