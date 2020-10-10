@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -117,6 +118,11 @@ public class RoutineNumber extends AppCompatActivity {
         TextView textView_day2 = findViewById(R.id.textview_day2);
         TextView textView_day3 = findViewById(R.id.textview_day3);
         TextView textView_day4 = findViewById(R.id.textview_day4);
+        textView_day1.setMovementMethod(new ScrollingMovementMethod());
+        textView_day2.setMovementMethod(new ScrollingMovementMethod());
+        textView_day3.setMovementMethod(new ScrollingMovementMethod());
+        textView_day4.setMovementMethod(new ScrollingMovementMethod());
+
 
         if(resultCode == RESULT_OK){
             switch(requestCode) {

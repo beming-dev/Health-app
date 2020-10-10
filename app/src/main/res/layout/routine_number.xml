@@ -38,7 +38,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:text="첫째 날"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:scrollbars="vertical"/>
 
                 <TextView
                     android:id="@+id/textview_day1"
@@ -78,7 +79,8 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/day_textview_style"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:scrollbars="vertical"/>
 
                 <Button
                     android:id="@+id/btn_day2"
@@ -111,14 +113,16 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:text="셋째 날"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:scrollbars="vertical"/>
 
                 <TextView
                     android:id="@+id/textview_day3"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/day_textview_style"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:scrollbars="vertical"/>
 
                 <Button
                     android:id="@+id/btn_day3"
