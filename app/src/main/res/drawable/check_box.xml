@@ -6,6 +6,6 @@
         android:color="#ffffff" />
     <stroke
         android:width="5dp"
-        android:color="#dd000000" />
+        android:color="@color/app_background" />
 
 </shape>
