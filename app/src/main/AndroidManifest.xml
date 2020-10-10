@@ -19,15 +19,15 @@
         </activity>
 
         <activity android:name=".Routine"/>
-        <activity android:name=".Routine_1"/>
+        <activity android:name=".RoutinePeriod"/>
         <activity android:name=".Lower"/>
         <activity android:name=".Upper"/>
         <activity android:name=".Diet"/>
         <activity android:name=".Core"/>
         <activity android:name=".RoutineNumber"/>
-        <activity android:name=".MyActivity"/>
+        <activity android:name=".ExkindSel"/>
         <activity android:name=".TodayExercise"/>
         <activity android:name=".TodayEx"/>
-        <activity android:name=".ExerciseKind"/>
+        <activity android:name=".ExPropertyCard"/>
     </application>
 </manifest>

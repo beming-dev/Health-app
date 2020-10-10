@@ -7,12 +7,12 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Routine_1 extends AppCompatActivity {
+public class RoutinePeriod extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.routine_1);
+        setContentView(R.layout.routine_period);
 
         Button btn_day1 = findViewById(R.id.day_1);
         Button btn_day2 = findViewById(R.id.day_2);

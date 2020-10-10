@@ -79,7 +79,7 @@ public class RoutineNumber extends AppCompatActivity {
                 break;
         }
 
-        final Intent btn_intent = new Intent(getApplicationContext(), MyActivity.class);
+        final Intent btn_intent = new Intent(getApplicationContext(), ExkindSel.class);
         btn_day1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -11,17 +11,17 @@ package org.techtown.realapp;
 
         import java.util.ArrayList;
 
-public class MyActivity extends AppCompatActivity {
+public class ExkindSel extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<MyAdapter.MyData> myDataset;
+    private ArrayList<ExkindSelAdapter.MyData> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_activity);
+        setContentView(R.layout.ex_kind_sel);
         mRecyclerView = (RecyclerView) findViewById(R.id.routine_recycler);
 
         mRecyclerView.setHasFixedSize(true);
@@ -33,13 +33,13 @@ public class MyActivity extends AppCompatActivity {
         int requestCode = intent.getExtras().getInt("requestCode");
 
         myDataset = new ArrayList<>();
-        mAdapter = new MyAdapter(myDataset,requestCode);
+        mAdapter = new ExkindSelAdapter(myDataset,requestCode);
         mRecyclerView.setAdapter(mAdapter);
 
-        myDataset.add(new MyAdapter.MyData(getString(R.string.upper), R.drawable.btn));
-        myDataset.add(new MyAdapter.MyData(getString(R.string.lower), R.drawable.btn));
-        myDataset.add(new MyAdapter.MyData("다이어트", R.drawable.btn));
-        myDataset.add(new MyAdapter.MyData("코어", R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.upper), R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.lower), R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData("다이어트", R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData("코어", R.drawable.btn));
 
         Button add_btn = findViewById(R.id.add_btn);
 

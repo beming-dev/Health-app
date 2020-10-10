@@ -1,22 +1,17 @@
 package org.techtown.realapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class ExkindSelAdapter extends RecyclerView.Adapter<ExkindSelAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataset;
     private int requestCode;
@@ -64,13 +59,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(ArrayList<MyData> myDataset, int requestCode) {
+    public ExkindSelAdapter(ArrayList<MyData> myDataset, int requestCode) {
         mDataset = myDataset;
         this.requestCode = requestCode;
     }
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ExkindSelAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.routine, parent, false);
 
         ViewHolder vh = new ViewHolder(v, requestCode);

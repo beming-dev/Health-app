@@ -10,9 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btn_routine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Routine_1.class);
+                Intent intent = new Intent(getApplicationContext(), RoutinePeriod.class);
 //                Intent intent = new Intent(getApplicationContext(), MyActivity.class);
                 startActivity(intent);
             }
