@@ -1,5 +1,7 @@
 package org.techtown.realapp;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 
 public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.ViewHolder> {
 
+    Context mContext;
     private ArrayList<MyData> mDataset;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -27,10 +31,20 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
             delete_btn = view.findViewById(R.id.delete_btn);
             intensity_btn = view.findViewById(R.id.intensity_btn);
             ex_name = view.findViewById(R.id.Ex_name_);
+
+            delete_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showDeleteMessage(getAdapterPosition());
+                }
+            });
         }
     }
 
-    public MyRoutineAdapter(ArrayList<MyData> myDataset) {mDataset = myDataset;}
+    public MyRoutineAdapter(ArrayList<MyData> myDataset, Context context) {
+        mDataset = myDataset;
+        mContext = context;
+    }
 
     @NonNull
     @Override
@@ -60,5 +74,29 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         public String getText() {
             return text;
         }
+    }
+
+    private void showDeleteMessage(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("제거");
+        builder.setMessage("제거하시겠습니까?");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String message = "예 버튼이 눌렸습니다.";
+                mDataset.remove(position);
+            }
+        });
+
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String message = "아니오 버튼이 눌렸습니다.";
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

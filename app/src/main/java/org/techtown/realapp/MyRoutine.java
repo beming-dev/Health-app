@@ -70,10 +70,10 @@ public class MyRoutine extends AppCompatActivity {
         myDataset_3 = new ArrayList<>();
         myDataset_4 = new ArrayList<>();
 
-        mAdapter_1 = new MyRoutineAdapter(myDataset_1);
-        mAdapter_2 = new MyRoutineAdapter(myDataset_2);
-        mAdapter_3 = new MyRoutineAdapter(myDataset_3);
-        mAdapter_4 = new MyRoutineAdapter(myDataset_4);
+        mAdapter_1 = new MyRoutineAdapter(myDataset_1, this);
+        mAdapter_2 = new MyRoutineAdapter(myDataset_2, this);
+        mAdapter_3 = new MyRoutineAdapter(myDataset_3, this);
+        mAdapter_4 = new MyRoutineAdapter(myDataset_4, this);
 
         mRecyclerView_1.setAdapter(mAdapter_1);
         mRecyclerView_2.setAdapter(mAdapter_2);

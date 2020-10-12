@@ -1,8 +1,11 @@
 package org.techtown.realapp;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -60,6 +63,7 @@ public class RoutineNumber extends AppCompatActivity {
         textView_day2.setText(null);
         textView_day3.setText(null);
         textView_day4.setText(null);
+
         for(int i=0; i<exercise_1.size(); i++) {
             if(exercise_1.get(i).getChoosed() == 1) {
                 textView_day1.append(exercise_1.get(i).getName() + "\n");
