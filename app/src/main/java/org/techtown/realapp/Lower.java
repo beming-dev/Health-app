@@ -57,7 +57,7 @@ public class Lower extends AppCompatActivity {
                 break;
         }
 
-        for(int i = Constants.EX_LOWER_START; i<Constants.EX_CORE_START; i++){
+        for(int i = Constants.EX_LOWER_START; i<Constants.EX_DIET_START; i++){
             myDataset.add(new LowerAdapter.MyData(exercise.get(i).getName(), false));
         }
 
