@@ -70,10 +70,10 @@ public class MyRoutine extends AppCompatActivity {
         myDataset_3 = new ArrayList<>();
         myDataset_4 = new ArrayList<>();
 
-        mAdapter_1 = new MyRoutineAdapter(myDataset_1, this);
-        mAdapter_2 = new MyRoutineAdapter(myDataset_2, this);
-        mAdapter_3 = new MyRoutineAdapter(myDataset_3, this);
-        mAdapter_4 = new MyRoutineAdapter(myDataset_4, this);
+        mAdapter_1 = new MyRoutineAdapter(myDataset_1, this, 1);
+        mAdapter_2 = new MyRoutineAdapter(myDataset_2, this, 2);
+        mAdapter_3 = new MyRoutineAdapter(myDataset_3, this, 3);
+        mAdapter_4 = new MyRoutineAdapter(myDataset_4, this, 4);
 
         mRecyclerView_1.setAdapter(mAdapter_1);
         mRecyclerView_2.setAdapter(mAdapter_2);
@@ -87,25 +87,25 @@ public class MyRoutine extends AppCompatActivity {
 
         for(int i=0; i<exercise_day1.size(); i++){
             if(exercise_day1.get(i).getChoosed() == 1){
-                myDataset_1.add(new MyRoutineAdapter.MyData(exercise_day1.get(i).getName()));
+                myDataset_1.add(new MyRoutineAdapter.MyData(exercise_day1.get(i).getName(), i));
             }
         }
 
         for(int i=0; i<exercise_day2.size(); i++){
             if(exercise_day2.get(i).getChoosed() == 1){
-                myDataset_2.add(new MyRoutineAdapter.MyData(exercise_day2.get(i).getName()));
+                myDataset_2.add(new MyRoutineAdapter.MyData(exercise_day2.get(i).getName(), i));
             }
         }
 
         for(int i=0; i<exercise_day3.size(); i++){
             if(exercise_day3.get(i).getChoosed() == 1){
-                myDataset_3.add(new MyRoutineAdapter.MyData(exercise_day3.get(i).getName()));
+                myDataset_3.add(new MyRoutineAdapter.MyData(exercise_day3.get(i).getName(), i));
             }
         }
 
         for(int i=0; i<exercise_day4.size(); i++){
             if(exercise_day4.get(i).getChoosed() == 1){
-                myDataset_4.add(new MyRoutineAdapter.MyData(exercise_day4.get(i).getName()));
+                myDataset_4.add(new MyRoutineAdapter.MyData(exercise_day4.get(i).getName(), i));
             }
         }
     }

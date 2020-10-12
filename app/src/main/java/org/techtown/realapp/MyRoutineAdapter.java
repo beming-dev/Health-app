@@ -2,6 +2,7 @@ package org.techtown.realapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.ViewHolder> {
 
+    ArrayList<Ex> exercise;
     Context mContext;
     private ArrayList<MyData> mDataset;
+    int day;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public Button delete_btn;
@@ -41,9 +50,10 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         }
     }
 
-    public MyRoutineAdapter(ArrayList<MyData> myDataset, Context context) {
+    public MyRoutineAdapter(ArrayList<MyData> myDataset, Context context, int day) {
         mDataset = myDataset;
         mContext = context;
+        this.day = day;
     }
 
     @NonNull
@@ -67,12 +77,18 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
 
     static class MyData{
         public String text;
-        public MyData(String text){
+        public int pos;
+
+        public MyData(String text, int pos){
             this.text = text;
+            this.pos = pos;
         }
 
         public String getText() {
             return text;
+        }
+        public int getPos(){
+            return pos;
         }
     }
 
@@ -87,6 +103,29 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
             public void onClick(DialogInterface dialogInterface, int i) {
                 String message = "예 버튼이 눌렸습니다.";
                 mDataset.remove(position);
+                switch(day){
+                    case 1:
+                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
+                        break;
+                    case 2:
+                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
+                        break;
+                    case 3:
+                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
+                        break;
+                    case 4:
+                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
+                        break;
+                }
+                notifyDataSetChanged();
             }
         });
 
@@ -99,4 +138,24 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
+        ArrayList<Ex> arrayList = gson.fromJson(json, type);
+
+        return arrayList;
+    }
+
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
+        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(exercise);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
+        editor.commit();
+    }
+
 }
