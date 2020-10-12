@@ -26,7 +26,7 @@ public class TodayExercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.today_exercise);
-        mRecyclerView = (RecyclerView) findViewById(R.id.today_recycler);
+        mRecyclerView = findViewById(R.id.today_recycler);
 
         mRecyclerView.setHasFixedSize(true);
 

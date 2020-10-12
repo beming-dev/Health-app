@@ -21,7 +21,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/Ex_name_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="hey"
@@ -35,25 +35,25 @@
 
 <!--            버튼 디자인 필요-->
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/intensity_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="강도 설정"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.348"
-                app:layout_constraintStart_toEndOf="@+id/button"
+                app:layout_constraintStart_toEndOf="@+id/delete_btn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/delete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제거"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.434"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/ex_name"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

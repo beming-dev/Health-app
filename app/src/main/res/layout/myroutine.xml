@@ -9,21 +9,60 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="day1"
+            android:background="#44ffffff"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myroutine_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="day2"
+            android:background="#44ffffff"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myroutine_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="day3"
+            android:background="#44ffffff"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myroutine_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="day4"
+            android:background="#44ffffff"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myroutine_4"
             android:layout_width="match_parent"

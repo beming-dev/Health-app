@@ -10,7 +10,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         btn_myroutine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), MyRoutine.class);
+                startActivity(intent);
             }
         });
 
@@ -70,18 +73,19 @@ public class MainActivity extends AppCompatActivity {
         "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",
         "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
-        for(int i=0; i<exNames.length; i++) {
-            exercise_day1.add(new Ex(exNames[i]));
-            exercise_day2.add(new Ex(exNames[i]));
-            exercise_day3.add(new Ex(exNames[i]));
-            exercise_day4.add(new Ex(exNames[i]));
+        if(exercise_day1 == null) {
+            for (int i = 0; i < exNames.length; i++) {
+                exercise_day1.add(new Ex(exNames[i]));
+                exercise_day2.add(new Ex(exNames[i]));
+                exercise_day3.add(new Ex(exNames[i]));
+                exercise_day4.add(new Ex(exNames[i]));
+            }
+
+            SaveExerciseData(exercise_day1, Constants.EX_SHP_KEY_day1);
+            SaveExerciseData(exercise_day2, Constants.EX_SHP_KEY_day2);
+            SaveExerciseData(exercise_day3, Constants.EX_SHP_KEY_day3);
+            SaveExerciseData(exercise_day4, Constants.EX_SHP_KEY_day4);
         }
-
-        SaveExerciseData(exercise_day1, Constants.EX_SHP_KEY_day1);
-        SaveExerciseData(exercise_day2, Constants.EX_SHP_KEY_day2);
-        SaveExerciseData(exercise_day3, Constants.EX_SHP_KEY_day3);
-        SaveExerciseData(exercise_day4, Constants.EX_SHP_KEY_day4);
-
     }
 
     private void SaveExerciseData(ArrayList<Ex> exercise, String key) {
@@ -91,5 +95,15 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(exercise);
         editor.putString(Constants.EX_SHP_DATA_KEY, json);
         editor.apply();
+    }
+
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
+        ArrayList<Ex> arrayList = gson.fromJson(json, type);
+
+        return arrayList;
     }
 }

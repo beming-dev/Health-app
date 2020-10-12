@@ -29,5 +29,6 @@
         <activity android:name=".TodayExercise"/>
         <activity android:name=".TodayEx"/>
         <activity android:name=".ExPropertyCard"/>
+        <activity android:name=".MyRoutine"/>
     </application>
 </manifest>
