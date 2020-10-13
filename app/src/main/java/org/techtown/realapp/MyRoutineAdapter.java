@@ -2,6 +2,7 @@ package org.techtown.realapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,13 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
                 @Override
                 public void onClick(View view) {
                     showDeleteMessage(getAdapterPosition());
+                }
+            });
+
+            intensity_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    view.getContext().startActivity(new Intent(view.getContext(), MainActivity.class));
                 }
             });
         }

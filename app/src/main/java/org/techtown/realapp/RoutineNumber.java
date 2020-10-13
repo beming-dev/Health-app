@@ -87,7 +87,7 @@ public class RoutineNumber extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Routine이 생성됐습니다. 내 루틴을 확인하세요.", Toast.LENGTH_LONG);
-                Intent send_intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent send_intent = new Intent(getApplicationContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(send_intent);
             }
         });

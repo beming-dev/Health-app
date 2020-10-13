@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RoutinePeriod.class);
-//                Intent intent = new Intent(getApplicationContext(), MyActivity.class);
                 startActivity(intent);
             }
         });
@@ -73,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
         "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",
         "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
-        exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day1);
-        exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day2);
-        exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day3);
-        exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+        if(ReadExerciseData(Constants.EX_SHP_KEY_day1) != null) {
+            exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+            exercise_day2 = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+            exercise_day3 = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+            exercise_day4 = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+        }
 
         if(exercise_day1.size() == 0 && exercise_day2.size() == 0 && exercise_day3.size() == 0 && exercise_day4.size() == 0) {
             for (int i = 0; i < exNames.length; i++) {
