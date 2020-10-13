@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2">
+
+        <TextView
+            android:id="@+id/textView_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세트"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"/>
+
+        <EditText
+            android:id="@+id/editText_set"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:hint="숫자만 입력해주세요."
+            android:textColor="#000000"
+            android:layout_marginRight="10sp"
+            android:inputType="numberDecimal"
+            android:numeric="integer"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3">
+
+        <TextView
+            android:id="@+id/textView_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="횟수"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"/>
+
+        <EditText
+            android:id="@+id/editText_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:textColor="#000000"
+            android:hint="숫자만 입력해주세요."
+            android:layout_marginRight="10sp"
+            android:inputType="numberDecimal"
+            android:numeric="integer"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <TextView
+            android:id="@+id/textView_rest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="휴식 시간(초)"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"/>
+
+        <EditText
+            android:id="@+id/editText_rest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:hint="숫자만 입력해주세요."
+            android:textColor="#000000"
+            android:layout_marginRight="10sp"
+            android:inputType="numberDecimal"
+            android:numeric="integer"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

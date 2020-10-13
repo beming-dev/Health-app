@@ -10,15 +10,18 @@ public class Ex {
     Ex(String name){
         this.choosed = 0;
         this.name = name;
-        this.number_of_times = 10;
-        this.set = 3;
-        this.restTime = 10;
+        this.number_of_times = Constants.DEFAULT_NUMBER;
+        this.set = Constants.DEFAULT_SET;
+        this.restTime = Constants.DEFAULT_REST;
     }
 
     void choice(){ this.choosed = 1; }
 
     void unchoice() {
         this.choosed = 0;
+        this.set = Constants.DEFAULT_SET;
+        this.number_of_times = Constants.DEFAULT_NUMBER;
+        this.restTime = Constants.DEFAULT_REST;
     }
 
     int getChoosed(){

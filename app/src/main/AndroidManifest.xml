@@ -30,5 +30,6 @@
         <activity android:name=".TodayEx"/>
         <activity android:name=".ExPropertyCard"/>
         <activity android:name=".MyRoutine"/>
+        <activity android:name=".SetIntensity"/>
     </application>
 </manifest>

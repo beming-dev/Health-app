@@ -1,5 +1,6 @@
 package org.techtown.realapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -52,7 +53,10 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
             intensity_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    view.getContext().startActivity(new Intent(view.getContext(), MainActivity.class));
+                    Intent intent = new Intent(view.getContext(), SetIntensity.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.putExtra("day", day);
+                    intent.putExtra("pos", mDataset.get(getAdapterPosition()).getPos());
+                    mContext.startActivity(intent);
                 }
             });
         }
