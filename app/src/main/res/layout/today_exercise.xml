@@ -5,45 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/app_background"
     >
 
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘의 운동"
+        android:textSize="25sp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/textView_todayEx"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="30dp" />
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_background">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:text="선택한 운동"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        app:mcv_selectionColor="#a9dbf0cb"
+        app:mcv_showOtherDates="defaults" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:id="@+id/today_recycler"
-        android:scrollbars="vertical"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+    <Button
+        android:id="@+id/button_todayEx"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="운동 시작"
+        android:layout_gravity="center" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/app_background">
 
-        <Button
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="시작"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
