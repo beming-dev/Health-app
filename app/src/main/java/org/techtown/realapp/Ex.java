@@ -14,13 +14,6 @@ public class Ex {
         this.set = Constants.DEFAULT_SET;
         this.restTime = Constants.DEFAULT_REST;
     }
-    Ex(Ex ex){
-        this.choosed = ex.getChoosed();
-        this.name = ex.getName();
-        this.number_of_times = ex.getNumber_of_times();
-        this.set = ex.getSet();
-        this.restTime = ex.getRestTime();
-    }
 
     void choice(){ this.choosed = 1; }
 
