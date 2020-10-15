@@ -84,14 +84,14 @@ public class StartEx extends AppCompatActivity {
         todayEx = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
         int todayEx_num = 0;
 
-        textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "");
-        textView_numOfEx.setText(todayEx.get(todayEx_num).getNumber_of_times() + "");
+        textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
+        textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
         textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
 

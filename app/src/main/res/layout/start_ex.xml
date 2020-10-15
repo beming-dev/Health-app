@@ -67,7 +67,7 @@
         android:layout_width="350dp"
         android:layout_height="70dp"
         android:gravity="center"
-        android:text="time"
+        android:text="0초"
         android:textSize="25sp"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
