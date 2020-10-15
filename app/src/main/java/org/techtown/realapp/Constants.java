@@ -6,6 +6,8 @@ public final class Constants {
     final public static String EX_SHP_KEY_day3 = "shp_key_3";
     final public static String EX_SHP_KEY_day4 = "shp_key_4";
 
+    final public static String EX_SHP_KEY_todayEx = "todayEx";
+
     final public static String EX_SHP_DATA_KEY = "shp_data_key";
 
     final public static int EX_UPPER_START = 0;
