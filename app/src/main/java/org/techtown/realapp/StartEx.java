@@ -61,6 +61,8 @@ public class StartEx extends AppCompatActivity {
     Timer timer = new Timer();
     MyTimer myTimer;
 
+    int todayEx_num;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +84,7 @@ public class StartEx extends AppCompatActivity {
         Button btn_next = findViewById(R.id.btn_next);
 
         todayEx = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
-        int todayEx_num = 0;
+        todayEx_num = 0;
 
         textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
         textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
@@ -91,14 +93,32 @@ public class StartEx extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                todayEx_num++;
+                if(todayEx_num == todayEx.size()-1){
+                    Toast.makeText(getApplicationContext(), "다음 운동이 없습니다.", Toast.LENGTH_LONG);
+                    todayEx_num = todayEx.size() - 2;
+                } else {
+                    textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
+                    textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
+                    textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
+                }
             }
         });
 
         btn_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                todayEx_num--;
+                if(todayEx_num < 0){
+                    Toast.makeText(getApplicationContext(), "이전 운동이 없습니다.", Toast.LENGTH_LONG);
+                    todayEx_num = 0;
+                } else {
+                    textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
+                    textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
+                    textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
+                }
             }
         });
     }
@@ -171,15 +191,6 @@ public class StartEx extends AppCompatActivity {
             timerTask.cancel();
             timerTask = null;
         }
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.apply();
     }
 
     private ArrayList<Ex> ReadExerciseData(String key) {
