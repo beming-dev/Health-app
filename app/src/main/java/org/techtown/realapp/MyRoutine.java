@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,7 @@ public class MyRoutine extends AppCompatActivity {
     private ArrayList<MyRoutineAdapter.MyData> myDataset_2;
     private ArrayList<MyRoutineAdapter.MyData> myDataset_3;
     private ArrayList<MyRoutineAdapter.MyData> myDataset_4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,21 @@ public class MyRoutine extends AppCompatActivity {
         mAdapter_3 = new MyRoutineAdapter(myDataset_3, this, 3);
         mAdapter_4 = new MyRoutineAdapter(myDataset_4, this, 4);
 
+        ItemTouchHelperCallback mCallback_1 = new ItemTouchHelperCallback((ItemTouchHelperListener) mAdapter_1);
+        ItemTouchHelperCallback mCallback_2 = new ItemTouchHelperCallback((ItemTouchHelperListener) mAdapter_2);
+        ItemTouchHelperCallback mCallback_3 = new ItemTouchHelperCallback((ItemTouchHelperListener) mAdapter_3);
+        ItemTouchHelperCallback mCallback_4 = new ItemTouchHelperCallback((ItemTouchHelperListener) mAdapter_4);
+
+        ItemTouchHelper helper_1 = new ItemTouchHelper(mCallback_1);
+        ItemTouchHelper helper_2 = new ItemTouchHelper(mCallback_2);
+        ItemTouchHelper helper_3 = new ItemTouchHelper(mCallback_3);
+        ItemTouchHelper helper_4 = new ItemTouchHelper(mCallback_4);
+
+        helper_1.attachToRecyclerView(mRecyclerView_1);
+        helper_2.attachToRecyclerView(mRecyclerView_2);
+        helper_3.attachToRecyclerView(mRecyclerView_3);
+        helper_4.attachToRecyclerView(mRecyclerView_4);
+
         mRecyclerView_1.setAdapter(mAdapter_1);
         mRecyclerView_2.setAdapter(mAdapter_2);
         mRecyclerView_3.setAdapter(mAdapter_3);
@@ -84,6 +101,7 @@ public class MyRoutine extends AppCompatActivity {
         exercise_day2 =ReadExerciseData(Constants.EX_SHP_KEY_day2);
         exercise_day3 =ReadExerciseData(Constants.EX_SHP_KEY_day3);
         exercise_day4 =ReadExerciseData(Constants.EX_SHP_KEY_day4);
+
 
         for(int i=0; i<exercise_day1.size(); i++){
             if(exercise_day1.get(i).getChoosed() == 1){

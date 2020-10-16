@@ -22,10 +22,13 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.ViewHolder> {
+public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.ViewHolder>
+        implements ItemTouchHelperListener{
 
     ArrayList<Ex> exercise;
     Context mContext;
@@ -170,4 +173,31 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         editor.commit();
     }
 
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        switch(day){
+            case 1:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
+                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
+                break;
+            case 2:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
+                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
+                break;
+            case 3:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
+                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
+                break;
+            case 4:
+                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
+                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
+                break;
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
 }
