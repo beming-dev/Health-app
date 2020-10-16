@@ -54,6 +54,7 @@ public class StartEx extends AppCompatActivity {
     TextView textView_nameOfEx;
     Button btnStart;
     Button btnStop;
+    Button btnNextSet;
 
     ArrayList<Ex> todayEx;
 
@@ -61,6 +62,7 @@ public class StartEx extends AppCompatActivity {
     Timer timer = new Timer();
     MyTimer myTimer;
 
+    int numOfSet;
     int todayEx_num;
 
     @Override
@@ -80,26 +82,61 @@ public class StartEx extends AppCompatActivity {
 
         btnStart = findViewById(R.id.btn_start);
         btnStop = findViewById(R.id.btn_stop);
+        btnNextSet = findViewById(R.id.btn_nextSet);
         Button btn_prev = findViewById(R.id.btn_prev);
         Button btn_next = findViewById(R.id.btn_next);
 
         todayEx = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
         todayEx_num = 0;
 
-        textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
-        textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
+        textView_numOfSet.setText("1세트 "+"(총" +todayEx.get(todayEx_num).getSet() + "세트)");
+        textView_numOfEx.setText(todayEx.get(todayEx_num).getNumber_of_times() + "회");
         textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
+
+        numOfSet = 0;
+
+        btnNextSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numOfSet++;
+                if(numOfSet != todayEx.get(todayEx_num).getSet()) {
+                    time.setText("0 초");
+                    textView_numOfSet.setText(numOfSet + 1 + "세트 " + "(총" + todayEx.get(todayEx_num).getSet() + "세트)");
+                }
+
+                btnStart.setVisibility(View.VISIBLE);
+                btnStop.setVisibility(View.GONE);
+                btnNextSet.setVisibility(View.GONE);
+
+                if(numOfSet == todayEx.get(todayEx_num).getSet()){
+                    Toast.makeText(getApplicationContext(), "마지막 세트입니다.", Toast.LENGTH_LONG).show();
+                    numOfSet--;
+                    btnStart.setVisibility(View.GONE);
+                    btnStop.setVisibility(View.GONE);
+                    btnNextSet.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopTimerTask();
+                time.setText("0 초");
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 todayEx_num++;
+                numOfSet = 0;
+
+                btnStart.setVisibility(View.VISIBLE);
+                btnStop.setVisibility(View.GONE);
+                btnNextSet.setVisibility(View.GONE);
+
                 if(todayEx_num == todayEx.size()-1){
-                    Toast.makeText(getApplicationContext(), "다음 운동이 없습니다.", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "다음 운동이 없습니다.", Toast.LENGTH_SHORT).show();
                     todayEx_num = todayEx.size() - 2;
                 } else {
-                    textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
+                    textView_numOfSet.setText(numOfSet + 1 + "세트 " + "(총" + todayEx.get(todayEx_num).getSet() + "세트)");
                     textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
                     textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
                 }
@@ -109,13 +146,21 @@ public class StartEx extends AppCompatActivity {
         btn_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopTimerTask();
+                time.setText("0 초");
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                numOfSet = 0;
                 todayEx_num--;
+
+                btnStart.setVisibility(View.VISIBLE);
+                btnStop.setVisibility(View.GONE);
+                btnNextSet.setVisibility(View.GONE);
+
                 if(todayEx_num < 0){
-                    Toast.makeText(getApplicationContext(), "이전 운동이 없습니다.", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "이전 운동이 없습니다.", Toast.LENGTH_SHORT).show();
                     todayEx_num = 0;
                 } else {
-                    textView_numOfSet.setText(todayEx.get(todayEx_num).getSet() + "세트");
+                    textView_numOfSet.setText(numOfSet + 1 + "세트 " + "(총" + todayEx.get(todayEx_num).getSet() + "세트)");
                     textView_numOfEx.setText("세트당" + todayEx.get(todayEx_num).getNumber_of_times() + "회");
                     textView_nameOfEx.setText(todayEx.get(todayEx_num).getName() + "");
                 }
@@ -152,11 +197,13 @@ public class StartEx extends AppCompatActivity {
                 startTimerTask();
                 btnStart.setVisibility(View.GONE);
                 btnStop.setVisibility(View.VISIBLE);
+                btnNextSet.setVisibility(View.GONE);
                 break;
             case R.id.btn_stop :
                 stopTimerTask();
-                btnStart.setVisibility(View.VISIBLE);
+                btnStart.setVisibility(View.GONE);
                 btnStop.setVisibility(View.GONE);
+                btnNextSet.setVisibility(View.VISIBLE);
                 break;
         }
     }

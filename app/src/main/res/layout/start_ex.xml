@@ -27,12 +27,12 @@
         android:gravity="center"
         android:text="세트"
         android:textSize="25sp"
-        android:textColor="#ffffff"
+        android:textColor="#bbffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"/>
+        app:layout_constraintVertical_bias="0.13"/>
 
     <TextView
         android:id="@+id/textView_numOfEx"
@@ -41,19 +41,19 @@
         android:gravity="center"
         android:text="n회"
         android:textSize="25sp"
-        android:textColor="#ffffff"
+        android:textColor="#bbffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"/>
+        app:layout_constraintVertical_bias="0.18"/>
 
     <TextView
         android:id="@+id/tip"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:gravity="center"
-        android:text="n회"
+        android:text="tip"
         android:textSize="25sp"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,19 +62,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.4"/>
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="350dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:gravity="center"
-        android:text="0초"
-        android:textSize="25sp"
-        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"/>
+        app:layout_constraintVertical_bias="0.75"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TIMER"
+            android:textSize="35sp"
+            android:textColor="#ff7f00"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0초"
+            android:textSize="35sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -91,6 +104,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/day_button_style"
             android:text="시작"
+            android:textSize="25sp"
             android:onClick="clickHandler"
             android:textColor="#ffffff"
             android:visibility="visible"
@@ -102,6 +116,18 @@
             android:background="@drawable/day_button_style"
             android:onClick="clickHandler"
             android:text="종료"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:visibility="gone"
+            />
+        <Button
+            android:id="@+id/btn_nextSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/day_button_style"
+            android:onClick="clickHandler"
+            android:text="다음 세트"
+            android:textSize="25sp"
             android:textColor="#ffffff"
             android:visibility="gone"
             />
@@ -122,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/day_button_style"
-            android:text="이전"
+            android:text="이전 운동"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:background="@drawable/day_button_style"
-            android:text="다음"
+            android:text="다음 운동"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
