@@ -1,12 +1,14 @@
 package org.techtown.realapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -133,7 +135,7 @@ public class StartEx extends AppCompatActivity {
                 btnNextSet.setVisibility(View.GONE);
 
                 if(todayEx_num == todayEx.size()-1){
-                    Toast.makeText(getApplicationContext(), "다음 운동이 없습니다.", Toast.LENGTH_SHORT).show();
+                    showDeleteMessage();
                     todayEx_num = todayEx.size() - 2;
                 } else {
                     textView_numOfSet.setText(numOfSet + 1 + "세트 " + "(총" + todayEx.get(todayEx_num).getSet() + "세트)");
@@ -168,6 +170,7 @@ public class StartEx extends AppCompatActivity {
         });
     }
 
+    //타이머
     public class MyTimer extends CountDownTimer {
         public MyTimer(long millisInFutere, long countDownInterval){
             super(millisInFutere, countDownInterval);
@@ -248,5 +251,29 @@ public class StartEx extends AppCompatActivity {
         ArrayList<Ex> arrayList = gson.fromJson(json, type);
 
         return arrayList;
+    }
+
+    //팝업
+    private void showDeleteMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("운동 종료");
+        builder.setMessage("운동이 끝났습니다. 나가시겠습니까?");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getApplicationContext(), EndEx.class);
+                startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

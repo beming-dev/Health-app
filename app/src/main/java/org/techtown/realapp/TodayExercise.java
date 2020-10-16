@@ -44,6 +44,7 @@ import java.util.List;
 
 public class TodayExercise extends AppCompatActivity {
     MaterialCalendarView calendar;
+    ArrayList<Ex> check;
     ArrayList<Ex> forTodayEx;
     ArrayList<Ex> todayEx = new ArrayList<Ex>();
     TextView textView_todayEx;
@@ -64,6 +65,12 @@ public class TodayExercise extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        check = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+        if(isExEmpty(check) == 1){
+            Toast.makeText(getApplicationContext(), "루틴을 생성해주세요.", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         calendar = findViewById(R.id.calendarView);
         calendar.state().edit()

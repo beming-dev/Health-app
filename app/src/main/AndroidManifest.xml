@@ -32,5 +32,6 @@
         <activity android:name=".MyRoutine"/>
         <activity android:name=".SetIntensity"/>
         <activity android:name=".StartEx"/>
+        <activity android:name=".EndEx"/>
     </application>
 </manifest>
