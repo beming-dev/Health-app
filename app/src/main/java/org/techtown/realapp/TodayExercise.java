@@ -66,6 +66,21 @@ public class TodayExercise extends AppCompatActivity {
             }
         });
 
+        Button nextBtn = findViewById(R.id.btn_next_day);
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        Button prevBtn = findViewById(R.id.btn_prev_day);
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         check = ReadExerciseData(Constants.EX_SHP_KEY_day1);
         if(isExEmpty(check) == 1){
             Toast.makeText(getApplicationContext(), "루틴을 생성해주세요.", Toast.LENGTH_SHORT).show();

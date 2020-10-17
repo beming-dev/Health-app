@@ -14,15 +14,39 @@
         android:text="오늘의 운동"
         android:textSize="25sp"
         android:textColor="#ffffff"
-        android:layout_gravity="center"/>
-    <TextView
-        android:id="@+id/textView_todayEx"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="15sp"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_prev_day"
+            android:layout_weight="0.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/day_button_style"
+            android:text="이전 날"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:id="@+id/textView_todayEx"
+            android:layout_weight="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="15sp"/>
+        <Button
+            android:id="@+id/btn_next_day"
+            android:layout_weight="0.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/day_button_style"
+            android:text="다음 날"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
@@ -35,11 +59,13 @@
 
     <Button
         android:id="@+id/button_todayEx"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="운동 시작"
-        android:layout_gravity="center" />
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:background="@drawable/day_button_style"/>
 
 
 </LinearLayout>
