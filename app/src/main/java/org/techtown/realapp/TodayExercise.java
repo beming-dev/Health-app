@@ -89,16 +89,38 @@ public class TodayExercise extends AppCompatActivity {
         if(forTodayEx == null){
             day = 1;
             forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
-
-            for(int i=0; i<forTodayEx.size(); i++){
-                if(forTodayEx.get(i).getChoosed() == 1){
-                    todayEx.add(forTodayEx.get(i));
-                }
-            }
-
-            todayEx.add(new Ex(day + ""));
-            SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
         }
+        else{
+            day = Integer.parseInt(forTodayEx.get(forTodayEx.size()-1).getName());
+
+            switch (day){
+                case 1:
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    break;
+                case 2:
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                    break;
+                case 3:
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                    break;
+                case 4:
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                    break;
+            }
+            if(isExEmpty(forTodayEx) == 1){
+                forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                day = 1;
+            }
+        }
+
+        for(int i=0; i<forTodayEx.size(); i++){
+            if(forTodayEx.get(i).getChoosed() == 1){
+                todayEx.add(forTodayEx.get(i));
+            }
+        }
+
+        todayEx.add(new Ex(day + ""));
+        SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
 
 
         textView_todayEx = findViewById(R.id.textView_todayEx);

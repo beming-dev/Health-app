@@ -135,7 +135,7 @@ public class StartEx extends AppCompatActivity {
                 btnStop.setVisibility(View.GONE);
                 btnNextSet.setVisibility(View.GONE);
 
-                if(todayEx_num == todayEx.size()-1){
+                if(todayEx_num >= todayEx.size()-1){
                     showDeleteMessage();
                     todayEx_num = todayEx.size() - 2;
                 } else {
