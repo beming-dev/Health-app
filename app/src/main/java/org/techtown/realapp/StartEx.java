@@ -66,6 +66,7 @@ public class StartEx extends AppCompatActivity {
 
     int numOfSet;
     int todayEx_num;
+    int day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,6 +264,32 @@ public class StartEx extends AppCompatActivity {
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName()) + 1;
+                if(day == 5){day =1;}
+
+                switch (day){
+                    case 1:
+                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        break;
+                    case 2:
+                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        break;
+                    case 3:
+                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        break;
+                    case 4:
+                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        break;
+                }
+                if(isExEmpty(todayEx) == 1){
+                    todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    day = 1;
+                }
+
+                todayEx.remove(todayEx.size()-1);
+                todayEx.add(new Ex(day + ""));
+                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+
                 Intent intent = new Intent(getApplicationContext(), EndEx.class);
                 startActivity(intent);
             }
@@ -275,5 +302,26 @@ public class StartEx extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    int isExEmpty(ArrayList<Ex> exercise) {
+        int cnt = 0;
+        for (int i = 0; i < exercise.size(); i++) {
+            if (exercise.get(i).getChoosed() == 0) {
+                cnt++;
+            }
+        }
+        if (cnt == exercise.size()) {
+            return 1;
+        }
+        return 0;
+    }
+    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(exercise);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
+        editor.commit();
     }
 }
