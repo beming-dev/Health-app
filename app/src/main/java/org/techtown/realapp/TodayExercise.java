@@ -70,14 +70,93 @@ public class TodayExercise extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName()) + 1;
+                if(day == 5){day =1;}
 
+                switch (day){
+                    case 1:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        break;
+                    case 2:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        break;
+                    case 3:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        break;
+                    case 4:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        break;
+                }
+                if(isExEmpty(forTodayEx) == 1){
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    day = 1;
+                }
+
+                todayEx = new ArrayList<Ex>();
+                for(int i=0; i<forTodayEx.size(); i++){
+                    if(forTodayEx.get(i).getChoosed() == 1){
+                        todayEx.add(forTodayEx.get(i));
+                    }
+                }
+
+                todayEx.add(new Ex(day + ""));
+                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+
+                textView_todayEx.setText("");
+
+                for(int i=0; i<todayEx.size()-1; i++) {
+                    textView_todayEx.append(todayEx.get(i).getName() + "/");
+                }
             }
         });
         Button prevBtn = findViewById(R.id.btn_prev_day);
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName()) - 1;
+                if(day == 0){day =4;}
 
+                switch (day){
+                    case 1:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        break;
+                    case 2:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        break;
+                    case 3:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        break;
+                    case 4:
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        break;
+                }
+                if(isExEmpty(forTodayEx) == 1){
+                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                    day = 3;
+                    if(isExEmpty(forTodayEx) == 1){
+                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        day = 2;
+                        if(isExEmpty(forTodayEx) == 1){
+                            forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                            day = 1;
+                        }
+                    }
+                }
+
+                todayEx = new ArrayList<Ex>();
+                for(int i=0; i<forTodayEx.size(); i++){
+                    if(forTodayEx.get(i).getChoosed() == 1){
+                        todayEx.add(forTodayEx.get(i));
+                    }
+                }
+
+                todayEx.add(new Ex(day + ""));
+                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+
+                textView_todayEx.setText("");
+                for(int i=0; i<todayEx.size()-1; i++) {
+                    textView_todayEx.append(todayEx.get(i).getName() + "/");
+                }
             }
         });
 

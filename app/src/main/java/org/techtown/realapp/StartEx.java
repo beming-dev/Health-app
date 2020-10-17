@@ -286,7 +286,6 @@ public class StartEx extends AppCompatActivity {
                     day = 1;
                 }
 
-                todayEx.remove(todayEx.size()-1);
                 todayEx.add(new Ex(day + ""));
                 SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
 
