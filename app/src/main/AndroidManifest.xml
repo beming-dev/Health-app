@@ -33,5 +33,6 @@
         <activity android:name=".SetIntensity"/>
         <activity android:name=".StartEx"/>
         <activity android:name=".EndEx"/>
+        <activity android:name=".Rest" android:theme="@android:style/Theme.Dialog" />
     </application>
 </manifest>

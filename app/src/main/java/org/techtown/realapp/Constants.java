@@ -18,6 +18,4 @@ public final class Constants {
     final public static int DEFAULT_SET = 3;
     final public static int DEFAULT_NUMBER = 10;
     final public static int DEFAULT_REST = 30;
-
-    //final public static String EX_SHP_KEY = "shp_key";
 }

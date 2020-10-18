@@ -1,49 +1,24 @@
 package org.techtown.realapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
-import com.prolificinteractive.materialcalendarview.DayViewFacade;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-
-import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -136,7 +111,7 @@ public class StartEx extends AppCompatActivity {
                 btnNextSet.setVisibility(View.GONE);
 
                 if(todayEx_num >= todayEx.size()-1){
-                    showDeleteMessage();
+                    showEndMessage();
                     todayEx_num = todayEx.size() - 2;
                 } else {
                     textView_numOfSet.setText(numOfSet + 1 + "세트 " + "(총" + todayEx.get(todayEx_num).getSet() + "세트)");
@@ -205,6 +180,9 @@ public class StartEx extends AppCompatActivity {
                 break;
             case R.id.btn_stop :
                 stopTimerTask();
+                Intent intent = new Intent(getApplicationContext(), Rest.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.putExtra("count", todayEx_num);
+                startActivity(intent);
                 btnStart.setVisibility(View.GONE);
                 btnStop.setVisibility(View.GONE);
                 btnNextSet.setVisibility(View.VISIBLE);
@@ -244,18 +222,8 @@ public class StartEx extends AppCompatActivity {
         }
     }
 
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
-    }
-
     //팝업
-    private void showDeleteMessage() {
+    private void showEndMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("운동 종료");
         builder.setMessage("운동이 끝났습니다. 나가시겠습니까?");
@@ -315,6 +283,16 @@ public class StartEx extends AppCompatActivity {
         }
         return 0;
     }
+    private ArrayList<Ex> ReadExerciseData(String key) {
+        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
+        ArrayList<Ex> arrayList = gson.fromJson(json, type);
+
+        return arrayList;
+    }
+
     private void SaveExerciseData(ArrayList<Ex> exercise, String key){
         SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefForEx.edit();
