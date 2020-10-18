@@ -60,7 +60,6 @@ public class RoutineNumber extends AppCompatActivity {
         exercise_4 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
 
         //set textview when oncreate called
-
         textView_day1.setText(null);
         textView_day2.setText(null);
         textView_day3.setText(null);
@@ -83,12 +82,11 @@ public class RoutineNumber extends AppCompatActivity {
 
         //complete -> mainActivity
         Intent intent = getIntent();
-
         Button complete = findViewById(R.id.complete);
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Routine이 생성됐습니다. 내 루틴을 확인하세요.", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), getString(R.string.MakeRoutineComplete), Toast.LENGTH_LONG).show();
                 Intent send_intent = new Intent(getApplicationContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(send_intent);
             }
@@ -154,6 +152,7 @@ public class RoutineNumber extends AppCompatActivity {
         });
     }
 
+    //몇째날을 선택한건지 확인
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,7 +167,6 @@ public class RoutineNumber extends AppCompatActivity {
             switch(requestCode) {
                 case 1111:
                     exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
-                    Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
                     textView_day1.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
@@ -179,7 +177,6 @@ public class RoutineNumber extends AppCompatActivity {
                     break;
                 case 2222:
                     exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
-                    Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
                     textView_day2.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
@@ -190,7 +187,6 @@ public class RoutineNumber extends AppCompatActivity {
                     break;
                 case 3333:
                     exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
-                    Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
                     textView_day3.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
@@ -201,7 +197,6 @@ public class RoutineNumber extends AppCompatActivity {
                     break;
                 case 4444:
                     exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
-                    Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
                     textView_day4.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
@@ -212,24 +207,5 @@ public class RoutineNumber extends AppCompatActivity {
                     break;
             }
         }
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

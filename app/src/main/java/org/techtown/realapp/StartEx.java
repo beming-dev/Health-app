@@ -226,11 +226,11 @@ public class StartEx extends AppCompatActivity {
     //팝업
     private void showEndMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("운동 종료");
-        builder.setMessage("운동이 끝났습니다. 나가시겠습니까?");
+        builder.setTitle(getString(R.string.FinishExercise));
+        builder.setMessage(getString(R.string.FinishExerciseAsk));
         builder.setIcon(android.R.drawable.ic_dialog_alert);
 
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName()) + 1;
@@ -263,7 +263,7 @@ public class StartEx extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }

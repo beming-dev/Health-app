@@ -106,14 +106,13 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
 
     private void showDeleteMessage(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("제거");
-        builder.setMessage("제거하시겠습니까?");
+        builder.setTitle(mContext.getString(R.string.Delete)); // 제거
+        builder.setMessage(mContext.getString(R.string.DeleteAsk)); // 제거하시겠습니까?
         builder.setIcon(android.R.drawable.ic_dialog_alert);
 
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String message = "예 버튼이 눌렸습니다.";
                 switch(day){
                     case 1:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
@@ -141,16 +140,15 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
             }
         });
 
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(mContext.getString(R.string.No), new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String message = "아니오 버튼이 눌렸습니다.";
-            }
+            public void onClick(DialogInterface dialogInterface, int i) { }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
+    //드래그로 위치 바꾸기
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         switch(day){

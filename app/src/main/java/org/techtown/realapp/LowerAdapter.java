@@ -23,10 +23,10 @@ public class LowerAdapter extends RecyclerView.Adapter<LowerAdapter.ViewHolder> 
 
     private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise;
+    SaveExercise saveRead = new SaveExercise();
     private Context mContext;
     private int requestCode;
     String key_save;
-    SaveExercise saveRead = new SaveExercise();
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;

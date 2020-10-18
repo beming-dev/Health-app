@@ -50,7 +50,6 @@ public class ExkindSelAdapter extends RecyclerView.Adapter<ExkindSelAdapter.View
                             Intent intent = new Intent(v.getContext(), Core.class);
                             intent.putExtra("requestCode", requestCode);
                             v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
-//                            v.getContext().startActivity(new Intent(v.getContext(), Core.class).addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
                         }
                     }
                 }

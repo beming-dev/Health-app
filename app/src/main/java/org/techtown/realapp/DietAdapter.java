@@ -23,10 +23,10 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise = null;
+    SaveExercise saveRead = new SaveExercise();
     private Context mContext;
     private int requestCode;
     String key_save;
-    SaveExercise saveRead = new SaveExercise();
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;

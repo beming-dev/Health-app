@@ -23,10 +23,10 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 
     private ArrayList<MyData> mDataSet;
     private ArrayList<Ex> exercise = null;
+    SaveExercise saveRead = new SaveExercise();
     private Context mContext;
     private int requestCode;
     String key_save;
-    SaveExercise saveRead = new SaveExercise();
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -36,12 +36,6 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
             super(view);
             mTextView = view.findViewById(R.id.textView);
             cbSelect = view.findViewById(R.id.check_exercise);
-//            SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
-//
-//            //Creating editor to store values to shared preferences
-//            SharedPreferences.Editor editor = sharedPreferences1.edit();
-//            editor.putBoolean("check", cbSelect.isChecked());
-//            editor.apply();
         }
     }
 
@@ -121,24 +115,5 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
         public void setSelected(boolean selected) {
             isSelected = selected;
         }
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

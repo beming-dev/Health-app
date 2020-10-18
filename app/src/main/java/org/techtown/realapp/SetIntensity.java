@@ -44,7 +44,6 @@ public class SetIntensity extends AppCompatActivity {
         Intent intent = getIntent();
         day = intent.getExtras().getInt("day");
         pos = intent.getExtras().getInt("pos");
-        String key;
 
         switch(day){
             case 1:
@@ -69,11 +68,6 @@ public class SetIntensity extends AppCompatActivity {
         editText_number.setText(Integer.toString(exercise.get(pos).getNumber_of_times()));
         editText_rest.setText(Integer.toString(exercise.get(pos).getRestTime()));
         editText_set.setText(Integer.toString(exercise.get(pos).getSet()));
-
-//        if(editText_set.getText() != null) {
-//            int set = Integer.parseInt(editText_set.getText().toString());
-//            exercise.get(pos).setSet(set);
-//        }
 
         Button btn_complete = findViewById(R.id.btn_complete);
         btn_complete.setOnClickListener(new View.OnClickListener() {

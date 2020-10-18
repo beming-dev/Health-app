@@ -29,10 +29,9 @@ public class Core extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.core);
+
         mRecylcerView = (RecyclerView) findViewById(R.id.core_recycler);
-
         mRecylcerView.setHasFixedSize(true);
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecylcerView.setLayoutManager(mLayoutManager);
 
@@ -70,15 +69,5 @@ public class Core extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

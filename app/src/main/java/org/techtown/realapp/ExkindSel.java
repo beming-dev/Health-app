@@ -39,8 +39,8 @@ public class ExkindSel extends AppCompatActivity {
 
         myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.upper), R.drawable.btn));
         myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.lower), R.drawable.btn));
-        myDataset.add(new ExkindSelAdapter.MyData("다이어트", R.drawable.btn));
-        myDataset.add(new ExkindSelAdapter.MyData("코어", R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.diet), R.drawable.btn));
+        myDataset.add(new ExkindSelAdapter.MyData(getString(R.string.core), R.drawable.btn));
 
         Button add_btn = findViewById(R.id.add_btn);
 

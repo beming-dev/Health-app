@@ -15,6 +15,7 @@
     <string name="ChoiceExercise">운동 선택</string>
     <string name="Add">추가</string>
     <string name="Delete">제거</string>
+    <string name="DeleteAsk">제거하시겠습니까?</string>
     <string name="SetIntensity">강도 설정</string>
     <string name="FinishApp">앱 종료</string>
 
@@ -42,4 +43,11 @@
     <string name="PrevDay">이전날</string>
     <string name="NextDay">다음날</string>
     <string name="StartExercise">운동시작</string>
+
+    <string name="No">아니오</string>
+    <string name="Yes">예</string>
+    <string name="MakeRoutineComplete">루틴이 생성됐습니다. 내 루틴을 확인하세요.</string>
+
+    <string name="FinishExercise">운동 종료</string>
+    <string name="FinishExerciseAsk">운동이 끝났습니다. 나가시겠습니까?</string>
 </resources>
