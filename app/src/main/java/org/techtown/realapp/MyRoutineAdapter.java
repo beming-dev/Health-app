@@ -114,29 +114,29 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String message = "예 버튼이 눌렸습니다.";
-                mDataset.remove(position);
                 switch(day){
                     case 1:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
-                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
-                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
-                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
-                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
+                        exercise.get(mDataset.get(position).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day4);
                         break;
                 }
+                mDataset.remove(position);
                 notifyDataSetChanged();
             }
         });
@@ -156,26 +156,40 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         switch(day){
             case 1:
                 exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
+                Collections.swap(mDataset, fromPosition, toPosition);
+                swapPos(fromPosition, toPosition);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
                 saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day1);
                 break;
             case 2:
                 exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
+                Collections.swap(mDataset, fromPosition, toPosition);
+                swapPos(fromPosition, toPosition);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
                 saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day2);
                 break;
             case 3:
                 exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
+                Collections.swap(mDataset, fromPosition, toPosition);
+                swapPos(fromPosition, toPosition);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
                 saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day3);
                 break;
             case 4:
                 exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
+                Collections.swap(mDataset, fromPosition, toPosition);
+                swapPos(fromPosition, toPosition);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
                 saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day4);
                 break;
         }
         notifyItemMoved(fromPosition, toPosition);
         return true;
+    }
+
+    public void swapPos(int fromPosition, int toPosition){
+        int x = mDataset.get(fromPosition).getPos();
+        mDataset.get(fromPosition).pos = mDataset.get(toPosition).pos;
+        mDataset.get(toPosition).pos = x;
     }
 }
