@@ -118,22 +118,22 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
                 switch(day){
                     case 1:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
-                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
-                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
-                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
                         exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
-                        exercise.get(mDataset.get(position).getPos()).unchoice();
+                        exercise.get(mDataset.get(position-1).getPos()).unchoice();
                         saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day4);
                         break;
                 }
