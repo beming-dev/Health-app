@@ -25,8 +25,8 @@
             android:layout_height="80dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/mainbuttonstyle"
-            android:text="오늘의 운동"
-            android:textColor="#ffffff" />
+            android:text="@string/TodayExercise"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_myroutine"
@@ -34,17 +34,16 @@
             android:layout_height="80dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/mainbuttonstyle"
-            android:text="내 루틴"
-            android:textColor="#ffffff" />
+            android:text="@string/MyRoutine"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_routine"
             android:layout_width="120dp"
             android:layout_height="80dp"
             android:background="@drawable/mainbuttonstyle"
-            android:text="루틴 만들기"
-            android:textColor="#ffffff" />
-
+            android:text="@string/MakeRoutine"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_maderoutine"
@@ -52,11 +51,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/mainbuttonstyle"
-            android:text="검증된 루틴"
-            android:textColor="#ffffff" />
-
-
+            android:text="@string/WellKnownRoutine"
+            android:textColor="@color/white" />
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

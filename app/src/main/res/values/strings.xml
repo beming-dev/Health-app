@@ -2,4 +2,44 @@
     <string name="app_name">Home training</string>
     <string name="upper">상체</string>
     <string name="lower">하체</string>
+    <string name="diet">다이어트</string>
+    <string name="core">코어</string>
+
+    <string name="TodayExercise">오늘의 운동</string>
+    <string name="MyRoutine">내 루틴</string>
+    <string name="MakeRoutine">루틴 만들기</string>
+    <string name="WellKnownRoutine">검증된 루틴</string>
+
+    <string name="check">확인</string>
+    <string name="ToHome">홈으로</string>
+    <string name="ChoiceExercise">운동 선택</string>
+    <string name="Add">추가</string>
+    <string name="Delete">제거</string>
+    <string name="SetIntensity">강도 설정</string>
+    <string name="FinishApp">앱 종료</string>
+
+    <string name="day1">day1</string>
+    <string name="day2">day2</string>
+    <string name="day3">day3</string>
+    <string name="day4">day4</string>
+    <string name="FirstDay">첫째 날</string>
+    <string name="SecondDay">둘째 날</string>
+    <string name="ThirdDay">셋째 날</string>
+    <string name="FourthDay">넷째 날</string>
+    <string name="Oneday">1일</string>
+    <string name="TwoDay">2일</string>
+    <string name="ThreeDay">3일</string>
+    <string name="FourDay">4일</string>
+
+    <string name="AddExercise">운동 추가하기</string>
+    <string name="Complete">완료</string>
+    <string name="SetRoutinePeriod">루틴주기설정</string>
+
+    <string name="Set">세트</string>
+    <string name="NumberPerSet">세트당 횟수</string>
+    <string name="RestTime_Sec">휴식시간(초)</string>
+
+    <string name="PrevDay">이전날</string>
+    <string name="NextDay">다음날</string>
+    <string name="StartExercise">운동시작</string>
 </resources>

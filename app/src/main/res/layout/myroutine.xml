@@ -17,9 +17,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="day1"
+                android:text="@string/day1"
                 android:background="#44ffffff"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:gravity="center"/>
 
@@ -32,9 +32,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="day2"
+                android:text="@string/day2"
                 android:background="#44ffffff"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:gravity="center"/>
 
@@ -48,9 +48,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="day3"
+                android:text="@string/day3"
                 android:background="#44ffffff"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:gravity="center"/>
 
@@ -63,9 +63,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="day4"
+                android:text="@string/day4"
                 android:background="#44ffffff"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:gravity="center"/>
             <androidx.recyclerview.widget.RecyclerView

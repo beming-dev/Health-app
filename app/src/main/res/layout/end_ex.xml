@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="운동이 종료되었습니다."
         android:textSize="35sp"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +32,8 @@
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:background="@drawable/day_button_style"
-            android:text="홈으로"
-            android:textColor="#ffffff"
+            android:text="@string/ToHome"
+            android:textColor="@color/white"
             android:textSize="17sp"
             android:layout_marginRight="70dp"/>
         <Button
@@ -41,8 +41,8 @@
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:background="@drawable/day_button_style"
-            android:text="앱 종료"
-            android:textColor="#ffffff"
+            android:text="@string/FinishApp"
+            android:textColor="@color/white"
             android:textSize="17sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

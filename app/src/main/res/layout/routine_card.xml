@@ -30,7 +30,7 @@ android:background="@color/app_background">
             android:layout_marginLeft="10dp"
             android:text="상체"
             android:textSize="20sp"
-            android:textColor="#ffffff"/>
+            android:textColor="@color/white"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"

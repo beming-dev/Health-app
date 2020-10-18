@@ -27,7 +27,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> 
     public TodayAdapter(ArrayList<MyData> myDataset) {mDataset = myDataset;}
 
     public TodayAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.todayex, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.todayex_card, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;

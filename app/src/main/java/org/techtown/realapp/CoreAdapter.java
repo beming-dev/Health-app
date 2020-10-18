@@ -52,7 +52,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
 
     @Override
     public CoreAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ex_property, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ex_property_card, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;

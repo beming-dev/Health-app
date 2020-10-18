@@ -1,6 +1,5 @@
 package org.techtown.realapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,11 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -74,7 +70,7 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
     @NonNull
     @Override
     public MyRoutineAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.myexercise, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.myexercise_card, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;

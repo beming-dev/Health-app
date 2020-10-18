@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="휴식:"
-            android:textColor="#ff7f00"
+            android:textColor="@color/orange"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:layout_marginLeft="20dp"
             android:text="hello"
             android:textSize="40sp"
-            android:textColor="#ffffff"/>
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_height="60dp"
         android:background="@drawable/day_button_style"
         android:text="휴식 종료"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"

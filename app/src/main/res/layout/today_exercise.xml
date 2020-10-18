@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="오늘의 운동"
         android:textSize="25sp"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"/>
     <LinearLayout
@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/day_button_style"
-            android:text="이전 날"
-            android:textColor="#ffffff"/>
+            android:text="@string/PrevDay"
+            android:textColor="@color/white"/>
         <TextView
             android:id="@+id/textView_todayEx"
             android:layout_weight="1.2"
@@ -36,7 +36,7 @@
             android:layout_height="70dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="15sp"/>
         <Button
             android:id="@+id/btn_next_day"
@@ -44,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/day_button_style"
-            android:text="다음 날"
-            android:textColor="#ffffff"/>
+            android:text="@string/NextDay"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#ffffff"
+        android:background="@color/white"
         app:mcv_selectionColor="#a9dbf0cb"
         app:mcv_showOtherDates="defaults" />
 
@@ -62,8 +62,8 @@
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="운동 시작"
-        android:textColor="#ffffff"
+        android:text="@string/StartExercise"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:background="@drawable/day_button_style"/>
 

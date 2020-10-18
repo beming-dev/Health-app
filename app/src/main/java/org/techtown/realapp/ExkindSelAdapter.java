@@ -66,7 +66,7 @@ public class ExkindSelAdapter extends RecyclerView.Adapter<ExkindSelAdapter.View
 
     @Override
     public ExkindSelAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.routine, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.routine_card, parent, false);
 
         ViewHolder vh = new ViewHolder(v, requestCode);
         return vh;

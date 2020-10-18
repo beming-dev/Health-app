@@ -8,6 +8,6 @@ public class ExPropertyCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ex_property);
+        setContentView(R.layout.ex_property_card);
     }
 }
