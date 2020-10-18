@@ -18,6 +18,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MyRoutine extends AppCompatActivity {
+    SaveExercise saveRead = new SaveExercise();
+
     ArrayList<Ex> exercise_day1 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day2 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day3 = new ArrayList<Ex>();
@@ -97,10 +99,10 @@ public class MyRoutine extends AppCompatActivity {
         mRecyclerView_3.setAdapter(mAdapter_3);
         mRecyclerView_4.setAdapter(mAdapter_4);
 
-        exercise_day1 =ReadExerciseData(Constants.EX_SHP_KEY_day1);
-        exercise_day2 =ReadExerciseData(Constants.EX_SHP_KEY_day2);
-        exercise_day3 =ReadExerciseData(Constants.EX_SHP_KEY_day3);
-        exercise_day4 =ReadExerciseData(Constants.EX_SHP_KEY_day4);
+        exercise_day1 =saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+        exercise_day2 =saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+        exercise_day3 =saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+        exercise_day4 =saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
 
 
         for(int i=0; i<exercise_day1.size(); i++){
@@ -126,15 +128,5 @@ public class MyRoutine extends AppCompatActivity {
                 myDataset_4.add(new MyRoutineAdapter.MyData(exercise_day4.get(i).getName(), i));
             }
         }
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

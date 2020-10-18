@@ -18,6 +18,7 @@ public class ExkindSel extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<ExkindSelAdapter.MyData> myDataset;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -28,7 +28,6 @@ public class ExkindSelAdapter extends RecyclerView.Adapter<ExkindSelAdapter.View
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    v.getContext().startActivity(new Intent(v.getContext(), MainActivity.class));
                     int pos = getAdapterPosition();
 
                     if(pos != RecyclerView.NO_POSITION) {

@@ -23,6 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Rest extends Activity {
+    SaveExercise saveRead = new SaveExercise();
 
     TimerTask timerTask;
     Timer timer = new Timer();
@@ -38,7 +39,7 @@ public class Rest extends Activity {
         setContentView(R.layout.rest);
 
         time = findViewById(R.id.textView_time);
-        exercise = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
+        exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         Intent intent = getIntent();
         int count = intent.getExtras().getInt("count");
@@ -48,7 +49,7 @@ public class Rest extends Activity {
         myTimer.start();
 
         time = findViewById(R.id.textView_time);
-        exercise = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
+        exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         Button stopRest = findViewById(R.id.stopRest);
         stopRest.setOnClickListener(new View.OnClickListener() {

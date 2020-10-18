@@ -34,6 +34,7 @@ public class StartEx extends AppCompatActivity {
     Button btnNextSet;
 
     ArrayList<Ex> todayEx;
+    SaveExercise saveRead = new SaveExercise();
 
     TimerTask timerTask;
     Timer timer = new Timer();
@@ -64,7 +65,7 @@ public class StartEx extends AppCompatActivity {
         Button btn_prev = findViewById(R.id.btn_prev);
         Button btn_next = findViewById(R.id.btn_next);
 
-        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
+        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
         todayEx_num = 0;
 
         textView_numOfSet.setText("1세트 "+"(총" +todayEx.get(todayEx_num).getSet() + "세트)");
@@ -237,25 +238,25 @@ public class StartEx extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(todayEx) == 1){
-                    todayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     day = 1;
                 }
 
                 todayEx.add(new Ex(day + ""));
-                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
                 Intent intent = new Intent(getApplicationContext(), EndEx.class);
                 startActivity(intent);
@@ -282,23 +283,5 @@ public class StartEx extends AppCompatActivity {
             return 1;
         }
         return 0;
-    }
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
     }
 }

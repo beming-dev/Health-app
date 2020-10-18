@@ -26,6 +26,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     private Context mContext;
     private int requestCode;
     String key_save;
+    SaveExercise saveRead = new SaveExercise();
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -61,19 +62,19 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         switch(requestCode){
             case 1111:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
                 key_save = Constants.EX_SHP_KEY_day1;
                 break;
             case 2222:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
                 key_save = Constants.EX_SHP_KEY_day2;
                 break;
             case 3333:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
                 key_save = Constants.EX_SHP_KEY_day3;
                 break;
             case 4444:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
                 key_save = Constants.EX_SHP_KEY_day4;
                 break;
         }
@@ -95,7 +96,7 @@ public class CoreAdapter extends RecyclerView.Adapter<CoreAdapter.ViewHolder> {
                 } else {
                     exercise.get(position + Constants.EX_CORE_START).unchoice();
                 }
-                SaveExerciseData(exercise, key_save);
+                saveRead.SaveExerciseData(mContext, exercise, key_save);
             }
         });
     }

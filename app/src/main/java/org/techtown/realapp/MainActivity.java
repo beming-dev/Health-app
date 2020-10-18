@@ -22,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Ex> exercise_day3 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day4 = new ArrayList<Ex>();
 
+    SaveExercise saveRead = new SaveExercise();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
@@ -72,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
                 "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",
                 "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
-        if(ReadExerciseData(Constants.EX_SHP_KEY_day1) != null) {
-            exercise_day1 = ReadExerciseData(Constants.EX_SHP_KEY_day1);
-            exercise_day2 = ReadExerciseData(Constants.EX_SHP_KEY_day2);
-            exercise_day3 = ReadExerciseData(Constants.EX_SHP_KEY_day3);
-            exercise_day4 = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+        if(saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1) != null) {
+            exercise_day1 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+            exercise_day2 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+            exercise_day3 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+            exercise_day4 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
         }
 
         if(exercise_day1.size() == 0 && exercise_day2.size() == 0 && exercise_day3.size() == 0 && exercise_day4.size() == 0) {
@@ -87,29 +90,10 @@ public class MainActivity extends AppCompatActivity {
                 exercise_day4.add(new Ex(exNames[i]));
             }
 
-            SaveExerciseData(exercise_day1, Constants.EX_SHP_KEY_day1);
-            SaveExerciseData(exercise_day2, Constants.EX_SHP_KEY_day2);
-            SaveExerciseData(exercise_day3, Constants.EX_SHP_KEY_day3);
-            SaveExerciseData(exercise_day4, Constants.EX_SHP_KEY_day4);
+            saveRead.SaveExerciseData(getApplicationContext(), exercise_day1, Constants.EX_SHP_KEY_day1);
+            saveRead.SaveExerciseData(getApplicationContext(), exercise_day2, Constants.EX_SHP_KEY_day2);
+            saveRead.SaveExerciseData(getApplicationContext(), exercise_day3, Constants.EX_SHP_KEY_day3);
+            saveRead.SaveExerciseData(getApplicationContext(), exercise_day4, Constants.EX_SHP_KEY_day4);
         }
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.apply();
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

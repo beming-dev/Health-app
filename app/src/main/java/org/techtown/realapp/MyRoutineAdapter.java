@@ -30,6 +30,7 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
     Context mContext;
     private ArrayList<MyData> mDataset;
     int day;
+    SaveExercise saveRead = new SaveExercise();
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public Button delete_btn;
@@ -116,24 +117,24 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
                 mDataset.remove(position);
                 switch(day){
                     case 1:
-                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
                         exercise.get(mDataset.get(position).getPos()).unchoice();
-                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
+                        saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
                         exercise.get(mDataset.get(position).getPos()).unchoice();
-                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
+                        saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
                         exercise.get(mDataset.get(position).getPos()).unchoice();
-                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
+                        saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
                         exercise.get(mDataset.get(position).getPos()).unchoice();
-                        SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
+                        saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 notifyDataSetChanged();
@@ -150,47 +151,28 @@ public class MyRoutineAdapter extends RecyclerView.Adapter<MyRoutineAdapter.View
         dialog.show();
     }
 
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         switch(day){
             case 1:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
-                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
+                saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day1);
                 break;
             case 2:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
-                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
+                saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day2);
                 break;
             case 3:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
-                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
+                saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day3);
                 break;
             case 4:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
                 Collections.swap(exercise, mDataset.get(fromPosition).getPos(), mDataset.get(toPosition).getPos());
-                SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
+                saveRead.SaveExerciseData(mContext, exercise, Constants.EX_SHP_KEY_day4);
                 break;
         }
         notifyItemMoved(fromPosition, toPosition);

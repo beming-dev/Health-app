@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class SetIntensity extends AppCompatActivity {
     ArrayList<Ex> exercise;
+    SaveExercise saveRead = new SaveExercise();
 
     EditText editText_set;
     EditText editText_number;
@@ -47,19 +48,19 @@ public class SetIntensity extends AppCompatActivity {
 
         switch(day){
             case 1:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                 Intensity_key = Constants.EX_SHP_KEY_day1;
                 break;
             case 2:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                 Intensity_key = Constants.EX_SHP_KEY_day2;
                 break;
             case 3:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                 Intensity_key = Constants.EX_SHP_KEY_day3;
                 break;
             case 4:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                 Intensity_key = Constants.EX_SHP_KEY_day4;
                 break;
         }
@@ -101,28 +102,9 @@ public class SetIntensity extends AppCompatActivity {
                     int rest = Integer.parseInt(editText_rest.getText().toString());
                     exercise.get(pos).setRestTime(rest);
                 }
-                SaveExerciseData(exercise, Intensity_key);
+                saveRead.SaveExerciseData(getApplicationContext(), exercise, Intensity_key);
                 finish();
             }
         });
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
     }
 }

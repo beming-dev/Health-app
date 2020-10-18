@@ -34,6 +34,8 @@ public class RoutineNumber extends AppCompatActivity {
     TextView textView_day3;
     TextView textView_day4;
 
+    SaveExercise saveRead = new SaveExercise();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +54,10 @@ public class RoutineNumber extends AppCompatActivity {
         textView_day3 = findViewById(R.id.textview_day3);
         textView_day4 = findViewById(R.id.textview_day4);
 
-        exercise_1 = ReadExerciseData(Constants.EX_SHP_KEY_day1);
-        exercise_2 = ReadExerciseData(Constants.EX_SHP_KEY_day2);
-        exercise_3 = ReadExerciseData(Constants.EX_SHP_KEY_day3);
-        exercise_4 = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+        exercise_1 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+        exercise_2 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+        exercise_3 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+        exercise_4 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
 
         //set textview when oncreate called
 
@@ -165,46 +167,46 @@ public class RoutineNumber extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode) {
                 case 1111:
-                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     Toast.makeText(getApplicationContext(), "1번 받음", Toast.LENGTH_SHORT).show();
                     textView_day1.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day1.append(exercise.get(i).getName()+ "\n");
-                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day1);
+                            saveRead.SaveExerciseData(getApplicationContext(), exercise, Constants.EX_SHP_KEY_day1);
                         }
                     }
                     break;
                 case 2222:
-                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                    exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                     Toast.makeText(getApplicationContext(), "2번 받음", Toast.LENGTH_SHORT).show();
                     textView_day2.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day2.append(exercise.get(i).getName()+ "\n");
-                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day2);
+                            saveRead.SaveExerciseData(getApplicationContext(), exercise, Constants.EX_SHP_KEY_day2);
                         }
                     }
                     break;
                 case 3333:
-                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                    exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                     Toast.makeText(getApplicationContext(), "3번 받음", Toast.LENGTH_SHORT).show();
                     textView_day3.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day3.append(exercise.get(i).getName()+ "\n");
-                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day3);
+                            saveRead.SaveExerciseData(getApplicationContext(), exercise, Constants.EX_SHP_KEY_day3);
                         }
                     }
                     break;
                 case 4444:
-                    exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                    exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                     Toast.makeText(getApplicationContext(), "4번 받음", Toast.LENGTH_SHORT).show();
                     textView_day4.setText(null);
                     for(int i=0; i<exercise.size(); i++){
                         if(exercise.get(i).getChoosed() == 1) {
                             textView_day4.append(exercise.get(i).getName()+ "\n");
-                            SaveExerciseData(exercise, Constants.EX_SHP_KEY_day4);
+                            saveRead.SaveExerciseData(getApplicationContext(), exercise, Constants.EX_SHP_KEY_day4);
                         }
                     }
                     break;

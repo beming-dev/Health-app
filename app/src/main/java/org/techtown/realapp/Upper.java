@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class Upper extends AppCompatActivity {
     ArrayList<Ex> exercise = new ArrayList<Ex>();
+    SaveExercise saveRead = new SaveExercise();
 
     private RecyclerView mRecylcerView;
     private RecyclerView.Adapter mAdapter;
@@ -44,16 +45,16 @@ public class Upper extends AppCompatActivity {
 
         switch (requestCode){
             case 1111:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                 break;
             case 2222:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                 break;
             case 3333:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                 break;
             case 4444:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                 break;
         }
 
@@ -69,16 +70,5 @@ public class Upper extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

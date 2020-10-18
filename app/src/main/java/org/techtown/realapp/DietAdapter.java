@@ -26,6 +26,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     private Context mContext;
     private int requestCode;
     String key_save;
+    SaveExercise saveRead = new SaveExercise();
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -35,12 +36,6 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
             super(view);
             mTextView = view.findViewById(R.id.textView);
             cbSelect = view.findViewById(R.id.check_exercise);
-//            SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("pref", MODE_PRIVATE);
-//
-//            //Creating editor to store values to shared preferences
-//            SharedPreferences.Editor editor = sharedPreferences1.edit();
-//            editor.putBoolean("check", cbSelect.isChecked());
-//            editor.apply();
         }
     }
 
@@ -61,19 +56,19 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         switch(requestCode){
             case 1111:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
                 key_save = Constants.EX_SHP_KEY_day1;
                 break;
             case 2222:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
                 key_save = Constants.EX_SHP_KEY_day2;
                 break;
             case 3333:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
                 key_save = Constants.EX_SHP_KEY_day3;
                 break;
             case 4444:
-                exercise = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
                 key_save = Constants.EX_SHP_KEY_day4;
                 break;
         }
@@ -97,7 +92,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
                 } else {
                     exercise.get(position + Constants.EX_DIET_START).unchoice();
                 }
-                SaveExerciseData(exercise, key_save);
+                saveRead.SaveExerciseData(mContext, exercise, key_save);
             }
         });
     }
@@ -122,24 +117,5 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         public void setSelected(boolean selected) {
             isSelected = selected;
         }
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = mContext.getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 }

@@ -49,6 +49,7 @@ public class TodayExercise extends AppCompatActivity {
     ArrayList<Ex> todayEx = new ArrayList<Ex>();
     TextView textView_todayEx;
     int day;
+    SaveExercise saveRead = new SaveExercise();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,20 +76,20 @@ public class TodayExercise extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(forTodayEx) == 1){
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     day = 1;
                 }
 
@@ -100,7 +101,7 @@ public class TodayExercise extends AppCompatActivity {
                 }
 
                 todayEx.add(new Ex(day + ""));
-                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
                 textView_todayEx.setText("");
 
@@ -118,26 +119,26 @@ public class TodayExercise extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(forTodayEx) == 1){
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                     day = 3;
                     if(isExEmpty(forTodayEx) == 1){
-                        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         day = 2;
                         if(isExEmpty(forTodayEx) == 1){
-                            forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                            forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                             day = 1;
                         }
                     }
@@ -151,7 +152,7 @@ public class TodayExercise extends AppCompatActivity {
                 }
 
                 todayEx.add(new Ex(day + ""));
-                SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
                 textView_todayEx.setText("");
                 for(int i=0; i<todayEx.size()-1; i++) {
@@ -160,7 +161,7 @@ public class TodayExercise extends AppCompatActivity {
             }
         });
 
-        check = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+        check = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
         if(isExEmpty(check) == 1){
             Toast.makeText(getApplicationContext(), "루틴을 생성해주세요.", Toast.LENGTH_SHORT).show();
             finish();
@@ -178,31 +179,31 @@ public class TodayExercise extends AppCompatActivity {
                 new SaturdayDecorator(),
                 new OneDayDecorator());
 
-        forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_todayEx);
+        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         if(forTodayEx == null){
             day = 1;
-            forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+            forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
         }
         else{
             day = Integer.parseInt(forTodayEx.get(forTodayEx.size()-1).getName());
 
             switch (day){
                 case 1:
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     break;
                 case 2:
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day2);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                     break;
                 case 3:
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day3);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                     break;
                 case 4:
-                    forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day4);
+                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                     break;
             }
             if(isExEmpty(forTodayEx) == 1){
-                forTodayEx = ReadExerciseData(Constants.EX_SHP_KEY_day1);
+                forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                 day = 1;
             }
         }
@@ -214,7 +215,7 @@ public class TodayExercise extends AppCompatActivity {
         }
 
         todayEx.add(new Ex(day + ""));
-        SaveExerciseData(todayEx, Constants.EX_SHP_KEY_todayEx);
+        saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
 
         textView_todayEx = findViewById(R.id.textView_todayEx);
@@ -234,25 +235,6 @@ public class TodayExercise extends AppCompatActivity {
             return 1;
         }
         return 0;
-    }
-
-    private void SaveExerciseData(ArrayList<Ex> exercise, String key){
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefForEx.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(exercise);
-        editor.putString(Constants.EX_SHP_DATA_KEY, json);
-        editor.commit();
-    }
-
-    private ArrayList<Ex> ReadExerciseData(String key) {
-        SharedPreferences prefForEx = getSharedPreferences(key, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
-        Type type = new TypeToken<ArrayList<Ex>>(){}.getType();
-        ArrayList<Ex> arrayList = gson.fromJson(json, type);
-
-        return arrayList;
     }
 
     public class SundayDecorator implements DayViewDecorator {
