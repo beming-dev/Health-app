@@ -48,8 +48,8 @@ public class TodayExercise extends AppCompatActivity {
     ArrayList<Ex> forTodayEx;
     ArrayList<Ex> todayEx = new ArrayList<>();
     TextView textView_todayEx;
-    int day;
     SaveExercise saveRead = new SaveExercise();
+    int day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class TodayExercise extends AppCompatActivity {
             }
         });
 
+        //다음 날
         Button nextBtn = findViewById(R.id.btn_next_day);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +111,9 @@ public class TodayExercise extends AppCompatActivity {
                 }
             }
         });
-        Button prevBtn = findViewById(R.id.btn_prev_day);
+
+        //이전 날
+       Button prevBtn = findViewById(R.id.btn_prev_day);
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,6 +177,7 @@ public class TodayExercise extends AppCompatActivity {
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
+
         calendar.addDecorators(
                 new SundayDecorator(),
                 new SaturdayDecorator(),
