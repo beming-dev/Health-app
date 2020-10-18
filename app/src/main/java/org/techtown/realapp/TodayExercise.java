@@ -46,7 +46,7 @@ public class TodayExercise extends AppCompatActivity {
     MaterialCalendarView calendar;
     ArrayList<Ex> check;
     ArrayList<Ex> forTodayEx;
-    ArrayList<Ex> todayEx = new ArrayList<Ex>();
+    ArrayList<Ex> todayEx = new ArrayList<>();
     TextView textView_todayEx;
     int day;
     SaveExercise saveRead = new SaveExercise();
@@ -58,8 +58,8 @@ public class TodayExercise extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.today_exercise);
 
-        Button button = findViewById(R.id.button_todayEx);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button start = findViewById(R.id.button_todayEx);
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StartEx.class);
