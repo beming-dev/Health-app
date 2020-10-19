@@ -179,9 +179,9 @@ public class TodayExercise extends AppCompatActivity {
                 .commit();
 
         calendar.addDecorators(
-                new SundayDecorator(),
-                new SaturdayDecorator(),
-                new OneDayDecorator());
+                new calender.SundayDecorator(),
+                new calender.SaturdayDecorator(),
+                new calender.OneDayDecorator());
 
         forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
@@ -239,66 +239,6 @@ public class TodayExercise extends AppCompatActivity {
             return 1;
         }
         return 0;
-    }
-
-    public class SundayDecorator implements DayViewDecorator {
-
-        private final Calendar calendar = Calendar.getInstance();
-
-        public SundayDecorator() {
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            day.copyTo(calendar);
-            int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-            return weekDay == Calendar.SUNDAY;
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.RED));
-        }
-    }
-
-    public class SaturdayDecorator implements DayViewDecorator {
-
-        private final Calendar calendar = Calendar.getInstance();
-
-        public SaturdayDecorator() {
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            day.copyTo(calendar);
-            int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-            return weekDay == Calendar.SATURDAY;
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.BLUE));
-        }
-    }
-
-    public class OneDayDecorator implements DayViewDecorator {
-
-        private CalendarDay date;
-
-        public OneDayDecorator() {
-            date = CalendarDay.today();
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            return date != null && day.equals(date);
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new StyleSpan(Typeface.BOLD));
-            view.addSpan(new RelativeSizeSpan(1.4f));
-        }
     }
 }
 
