@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:name="ca-app-pub-4911380706120456~9217336316"
             android:value="@string/admob_app_id"/>
 
         <activity android:name=".MainActivity">
@@ -39,7 +39,11 @@
         <activity android:name=".MyRoutine"/>
         <activity android:name=".SetIntensity"/>
         <activity android:name=".StartEx"/>
-        <activity android:name=".EndEx"/>
+        <activity android:name=".EndEx">
+            <meta-data
+                android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+                android:value="true"/>
+        </activity>
         <activity android:name=".Rest" android:theme="@android:style/Theme.Dialog" />
     </application>
 </manifest>

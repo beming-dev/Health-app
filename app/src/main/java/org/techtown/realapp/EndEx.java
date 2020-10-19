@@ -30,9 +30,8 @@ public class EndEx extends AppCompatActivity {
 
         Button btn_toHome = findViewById(R.id.btn_toHome);
         Button btn_exit = findViewById(R.id.btn_exit);
-
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
         //ad
+
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
