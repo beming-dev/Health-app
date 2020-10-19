@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Home training</string>
+    <string name="app_name">오늘의 홈트</string>
+
     <string name="upper">상체</string>
     <string name="lower">하체</string>
     <string name="diet">다이어트</string>
@@ -50,4 +51,8 @@
 
     <string name="FinishExercise">운동 종료</string>
     <string name="FinishExerciseAsk">운동이 끝났습니다. 나가시겠습니까?</string>
+    
+    <string name="admob_app_id">ca-app-pub-4911380706120456~9217336316</string>
+    <string name="fore_ad_unit_id">ca-app-pub-4911380706120456/8864809064</string>
+    <string name="fore_ad_unit_id_test">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
