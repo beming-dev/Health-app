@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -228,10 +229,25 @@ public class StartEx extends AppCompatActivity {
 
     //팝업
     private void showEndMessage() {
+        ArrayList<CompleteEx> CompleteEx;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.FinishExercise));
         builder.setMessage(getString(R.string.FinishExerciseAsk));
         builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName());
+
+        CompleteEx = saveRead.ReadExercisCompData(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
+        if(CompleteEx == null){
+            CompleteEx = new ArrayList<>();
+        }else{
+            if(CompleteEx.get(CompleteEx.size()-1).getDate().equals(day)){
+                CompleteEx.remove(CompleteEx.size()-1);
+            }
+        }
+        CompleteEx.add(new CompleteEx(CalendarDay.today(), day));
+        saveRead.SaveExerciseCompData(getApplicationContext(), CompleteEx, Constants.EX_SHP_KEY_COMPLETE);
 
         builder.setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
             @Override

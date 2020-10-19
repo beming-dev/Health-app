@@ -28,4 +28,23 @@ public class SaveExercise {
 
         return arrayList;
     }
+
+    public void SaveExerciseCompData(Context context, ArrayList<CompleteEx> exercise, String key) {
+        SharedPreferences prefForEx = context.getSharedPreferences(key, context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefForEx.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(exercise);
+        editor.putString(Constants.EX_SHP_DATA_KEY, json);
+        editor.apply();
+    }
+
+    public ArrayList<CompleteEx> ReadExercisCompData(Context context, String key) {
+        SharedPreferences prefForEx = context.getSharedPreferences(key, context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefForEx.getString(Constants.EX_SHP_DATA_KEY, "");
+        Type type = new TypeToken<ArrayList<CompleteEx>>(){}.getType();
+        ArrayList<CompleteEx> arrayList = gson.fromJson(json, type);
+
+        return arrayList;
+    }
 }

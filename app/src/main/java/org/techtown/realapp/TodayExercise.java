@@ -47,7 +47,9 @@ public class TodayExercise extends AppCompatActivity {
     ArrayList<Ex> check;
     ArrayList<Ex> forTodayEx;
     ArrayList<Ex> todayEx = new ArrayList<>();
+    ArrayList<CompleteEx> CompleteEx;
     TextView textView_todayEx;
+    TextView textView_day;
     SaveExercise saveRead = new SaveExercise();
     int day;
 
@@ -57,6 +59,8 @@ public class TodayExercise extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.today_exercise);
+
+        textView_day = findViewById(R.id.textView_day);
 
         Button start = findViewById(R.id.button_todayEx);
         start.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +109,7 @@ public class TodayExercise extends AppCompatActivity {
                 saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
                 textView_todayEx.setText("");
+                textView_day.setText("(day" +day+ ")");
 
                 for(int i=0; i<todayEx.size()-1; i++) {
                     textView_todayEx.append(todayEx.get(i).getName() + "/");
@@ -156,6 +161,7 @@ public class TodayExercise extends AppCompatActivity {
 
                 todayEx.add(new Ex(day + ""));
                 saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
+                textView_day.setText("(day" +day+ ")");
 
                 textView_todayEx.setText("");
                 for(int i=0; i<todayEx.size()-1; i++) {
@@ -170,6 +176,11 @@ public class TodayExercise extends AppCompatActivity {
             finish();
         }
 
+        CompleteEx = saveRead.ReadExercisCompData(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
+        if(CompleteEx == null){
+            CompleteEx = new ArrayList<>();
+        }
+
         calendar = findViewById(R.id.calendarView);
         calendar.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -181,7 +192,12 @@ public class TodayExercise extends AppCompatActivity {
         calendar.addDecorators(
                 new calender.SundayDecorator(),
                 new calender.SaturdayDecorator(),
-                new calender.OneDayDecorator());
+                new calender.TodayDecorator());
+
+        for(int i=0; i<CompleteEx.size(); i++) {
+            calendar.addDecorators(
+                    new calender.OneDayDecorator(CompleteEx.get(i).getDate(), CompleteEx.get(i).getDay()));
+        }
 
         forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
@@ -221,8 +237,8 @@ public class TodayExercise extends AppCompatActivity {
         todayEx.add(new Ex(day + ""));
         saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
-
         textView_todayEx = findViewById(R.id.textView_todayEx);
+        textView_day.setText("(day" +day+ ")");
         for(int i=0; i<todayEx.size()-1; i++) {
             textView_todayEx.append(todayEx.get(i).getName() + "/");
         }
