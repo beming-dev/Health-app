@@ -1,53 +1,29 @@
 package org.techtown.realapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
-import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 
 
-public class TodayExercise extends AppCompatActivity {
+public class ActivityTodayExercise extends AppCompatActivity {
     MaterialCalendarView calendar;
     ArrayList<Ex> check;
     ArrayList<Ex> forTodayEx;
     ArrayList<Ex> todayEx = new ArrayList<>();
-    ArrayList<CompleteEx> CompleteEx;
+    ArrayList<ExRecord> ExRecord;
     TextView textView_todayEx;
     TextView textView_day;
     SaveExercise saveRead = new SaveExercise();
@@ -66,10 +42,12 @@ public class TodayExercise extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StartEx.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityStartEx.class);
                 startActivity(intent);
             }
         });
+
+        // ToDo: Factorize here using function.
 
         //다음 날
         Button nextBtn = findViewById(R.id.btn_next_day);
@@ -81,20 +59,20 @@ public class TodayExercise extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(forTodayEx) == 1){
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     day = 1;
                 }
 
@@ -106,7 +84,7 @@ public class TodayExercise extends AppCompatActivity {
                 }
 
                 todayEx.add(new Ex(day + ""));
-                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.saveData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
                 textView_todayEx.setText("");
                 textView_day.setText("(day" +day+ ")");
@@ -127,26 +105,26 @@ public class TodayExercise extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(forTodayEx) == 1){
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                     day = 3;
                     if(isExEmpty(forTodayEx) == 1){
-                        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         day = 2;
                         if(isExEmpty(forTodayEx) == 1){
-                            forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                            forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                             day = 1;
                         }
                     }
@@ -160,7 +138,7 @@ public class TodayExercise extends AppCompatActivity {
                 }
 
                 todayEx.add(new Ex(day + ""));
-                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.saveData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
                 textView_day.setText("(day" +day+ ")");
 
                 textView_todayEx.setText("");
@@ -170,15 +148,15 @@ public class TodayExercise extends AppCompatActivity {
             }
         });
 
-        check = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+        check = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
         if(isExEmpty(check) == 1){
             Toast.makeText(getApplicationContext(), "루틴을 생성해주세요.", Toast.LENGTH_SHORT).show();
             finish();
         }
 
-        CompleteEx = saveRead.ReadExercisCompData(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
-        if(CompleteEx == null){
-            CompleteEx = new ArrayList<>();
+        ExRecord = saveRead.loadDataExRecord(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
+        if(ExRecord == null){
+            ExRecord = new ArrayList<>();
         }
 
         calendar = findViewById(R.id.calendarView);
@@ -190,40 +168,40 @@ public class TodayExercise extends AppCompatActivity {
                 .commit();
 
         calendar.addDecorators(
-                new calender.SundayDecorator(),
-                new calender.SaturdayDecorator(),
-                new calender.TodayDecorator());
+                new Calender.SundayDecorator(),
+                new Calender.SaturdayDecorator(),
+                new Calender.TodayDecorator());
 
-        for(int i=0; i<CompleteEx.size(); i++) {
+        for(int i = 0; i< ExRecord.size(); i++) {
             calendar.addDecorators(
-                    new calender.OneDayDecorator(CompleteEx.get(i).getDate(), CompleteEx.get(i).getDay()));
+                    new Calender.OneDayDecorator(ExRecord.get(i).getDate(), ExRecord.get(i).getDay()));
         }
 
-        forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
+        forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         if(forTodayEx == null){
             day = 1;
-            forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+            forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
         }
         else{
             day = Integer.parseInt(forTodayEx.get(forTodayEx.size()-1).getName());
 
             switch (day){
                 case 1:
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     break;
                 case 2:
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                     break;
                 case 3:
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                     break;
                 case 4:
-                    forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+                    forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                     break;
             }
             if(isExEmpty(forTodayEx) == 1){
-                forTodayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                forTodayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                 day = 1;
             }
         }
@@ -235,7 +213,7 @@ public class TodayExercise extends AppCompatActivity {
         }
 
         todayEx.add(new Ex(day + ""));
-        saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
+        saveRead.saveData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
         textView_todayEx = findViewById(R.id.textView_todayEx);
         textView_day.setText("(day" +day+ ")");

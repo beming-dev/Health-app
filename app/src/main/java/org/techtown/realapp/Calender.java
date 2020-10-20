@@ -16,7 +16,7 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.util.Calendar;
 
-public class calender {
+public class Calender {
     public static class SundayDecorator implements DayViewDecorator {
 
         private final Calendar calendar = Calendar.getInstance();

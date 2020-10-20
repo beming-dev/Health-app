@@ -32,22 +32,22 @@ public class ExkindSelAdapter extends RecyclerView.Adapter<ExkindSelAdapter.View
 
                     if(pos != RecyclerView.NO_POSITION) {
                         if(pos == 0){
-                            Intent intent = new Intent(v.getContext(), Upper.class);
+                            Intent intent = new Intent(v.getContext(), ActivityUpper.class);
                             intent.putExtra("requestCode", requestCode);
                             v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
                         }
                         else if(pos == 1){
-                            Intent intent = new Intent(v.getContext(), Lower.class);
+                            Intent intent = new Intent(v.getContext(), ActivityLower.class);
                             intent.putExtra("requestCode", requestCode);
                             v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
                         }
                         else if(pos == 2){
-                            Intent intent = new Intent(v.getContext(), Diet.class);
+                            Intent intent = new Intent(v.getContext(), ActivityDiet.class);
                             intent.putExtra("requestCode", requestCode);
                             v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
                         }
                         else {
-                            Intent intent = new Intent(v.getContext(), Core.class);
+                            Intent intent = new Intent(v.getContext(), ActivityCore.class);
                             intent.putExtra("requestCode", requestCode);
                             v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
                         }

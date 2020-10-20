@@ -1,7 +1,6 @@
 package org.techtown.realapp;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> {
 
@@ -56,19 +49,19 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, final int position) {
         switch(requestCode){
             case 1111:
-                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.loadDataEx(mContext, Constants.EX_SHP_KEY_day1);
                 key_save = Constants.EX_SHP_KEY_day1;
                 break;
             case 2222:
-                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.loadDataEx(mContext, Constants.EX_SHP_KEY_day2);
                 key_save = Constants.EX_SHP_KEY_day2;
                 break;
             case 3333:
-                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.loadDataEx(mContext, Constants.EX_SHP_KEY_day3);
                 key_save = Constants.EX_SHP_KEY_day3;
                 break;
             case 4444:
-                exercise = saveRead.ReadExerciseData(mContext, Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.loadDataEx(mContext, Constants.EX_SHP_KEY_day4);
                 key_save = Constants.EX_SHP_KEY_day4;
                 break;
         }
@@ -91,7 +84,7 @@ public class UpperAdapter extends RecyclerView.Adapter<UpperAdapter.ViewHolder> 
                 } else {
                     exercise.get(position + Constants.EX_UPPER_START).unchoice();
                 }
-                saveRead.SaveExerciseData(mContext, exercise, key_save);
+                saveRead.saveData(mContext, exercise, key_save);
             }
         });
     }

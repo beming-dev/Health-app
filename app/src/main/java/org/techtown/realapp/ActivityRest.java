@@ -2,7 +2,6 @@ package org.techtown.realapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MotionEvent;
@@ -11,18 +10,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Rest extends Activity {
+public class ActivityRest extends Activity {
     SaveExercise saveRead = new SaveExercise();
 
     TimerTask timerTask;
@@ -39,7 +31,7 @@ public class Rest extends Activity {
         setContentView(R.layout.rest);
 
         time = findViewById(R.id.textView_time);
-        exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
+        exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         Intent intent = getIntent();
         int count = intent.getExtras().getInt("count");
@@ -49,7 +41,7 @@ public class Rest extends Activity {
         myTimer.start();
 
         time = findViewById(R.id.textView_time);
-        exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
+        exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
 
         Button stopRest = findViewById(R.id.stopRest);
         stopRest.setOnClickListener(new View.OnClickListener() {

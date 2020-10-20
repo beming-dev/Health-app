@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityMain extends AppCompatActivity {
 
     ArrayList<Ex> exercise_day1 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day2 = new ArrayList<Ex>();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btn_routine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RoutinePeriod.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityRoutinePeriod.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btn_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TodayExercise.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityTodayExercise.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btn_myroutine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyRoutine.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityMyRoutine.class);
                 startActivity(intent);
             }
         });
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",
                 "코어 1", "코어 2", "코어 3", "코어 4", "코어 5", "코어 6", "코어 7", "코어 8"};
 
-        if(saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1) != null) {
-            exercise_day1 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
-            exercise_day2 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
-            exercise_day3 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
-            exercise_day4 = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+        if(saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1) != null) {
+            exercise_day1 = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+            exercise_day2 = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+            exercise_day3 = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+            exercise_day4 = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
         }
 
         if(exercise_day1.size() == 0 && exercise_day2.size() == 0 && exercise_day3.size() == 0 && exercise_day4.size() == 0) {
@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 exercise_day4.add(new Ex(exNames[i]));
             }
 
-            saveRead.SaveExerciseData(getApplicationContext(), exercise_day1, Constants.EX_SHP_KEY_day1);
-            saveRead.SaveExerciseData(getApplicationContext(), exercise_day2, Constants.EX_SHP_KEY_day2);
-            saveRead.SaveExerciseData(getApplicationContext(), exercise_day3, Constants.EX_SHP_KEY_day3);
-            saveRead.SaveExerciseData(getApplicationContext(), exercise_day4, Constants.EX_SHP_KEY_day4);
+            saveRead.saveData(getApplicationContext(), exercise_day1, Constants.EX_SHP_KEY_day1);
+            saveRead.saveData(getApplicationContext(), exercise_day2, Constants.EX_SHP_KEY_day2);
+            saveRead.saveData(getApplicationContext(), exercise_day3, Constants.EX_SHP_KEY_day3);
+            saveRead.saveData(getApplicationContext(), exercise_day4, Constants.EX_SHP_KEY_day4);
         }
     }
 }

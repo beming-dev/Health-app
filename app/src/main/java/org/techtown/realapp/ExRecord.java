@@ -6,11 +6,12 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.Calendar;
 
-public class CompleteEx {
+
+public class ExRecord {
     CalendarDay date;
     int day;
 
-    CompleteEx(CalendarDay date, int day){
+    ExRecord(CalendarDay date, int day){
         this.date = date;
         this.day = day;
     }

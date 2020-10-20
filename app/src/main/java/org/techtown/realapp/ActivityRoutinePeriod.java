@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RoutinePeriod extends AppCompatActivity {
+public class ActivityRoutinePeriod extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class RoutinePeriod extends AppCompatActivity {
         Button btn_day3 = findViewById(R.id.day_3);
         Button btn_day4 = findViewById(R.id.day_4);
 
-        final Intent intent = new Intent(getApplicationContext(), RoutineNumber.class);
+        final Intent intent = new Intent(getApplicationContext(), ActivityRoutineNumber.class);
 
         btn_day1.setOnClickListener(new View.OnClickListener() {
             @Override

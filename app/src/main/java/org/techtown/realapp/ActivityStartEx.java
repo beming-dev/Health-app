@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -18,17 +17,14 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class StartEx extends AppCompatActivity {
+public class ActivityStartEx extends AppCompatActivity {
     TextView time;
     TextView tip;
     TextView textView_numOfEx;
@@ -58,7 +54,7 @@ public class StartEx extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.start_ex);
 
-        MobileAds.initialize(StartEx.this, getString(R.string.admob_app_id));
+        MobileAds.initialize(ActivityStartEx.this, getString(R.string.admob_app_id));
         //ad
         mInterstitialAd = new InterstitialAd(getApplicationContext());
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -78,7 +74,7 @@ public class StartEx extends AppCompatActivity {
         Button btn_prev = findViewById(R.id.btn_prev);
         Button btn_next = findViewById(R.id.btn_next);
 
-        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
+        todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_todayEx);
         todayEx_num = 0;
 
         textView_numOfSet.setText("1세트 "+"(총" +todayEx.get(todayEx_num).getSet() + "세트)");
@@ -194,7 +190,7 @@ public class StartEx extends AppCompatActivity {
                 break;
             case R.id.btn_stop :
                 stopTimerTask();
-                Intent intent = new Intent(getApplicationContext(), Rest.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                Intent intent = new Intent(getApplicationContext(), ActivityRest.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 intent.putExtra("count", todayEx_num);
                 startActivity(intent);
                 btnStart.setVisibility(View.GONE);
@@ -238,7 +234,7 @@ public class StartEx extends AppCompatActivity {
 
     //팝업
     private void showEndMessage() {
-        ArrayList<CompleteEx> CompleteEx;
+        ArrayList<ExRecord> ExRecord;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.FinishExercise));
@@ -247,16 +243,17 @@ public class StartEx extends AppCompatActivity {
 
         day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName());
 
-        CompleteEx = saveRead.ReadExercisCompData(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
-        if(CompleteEx == null){
-            CompleteEx = new ArrayList<>();
+        ExRecord = saveRead.loadDataExRecord(getApplicationContext(), Constants.EX_SHP_KEY_COMPLETE);
+        if(ExRecord == null){
+            ExRecord = new ArrayList<>();
         }else{
-            if(CompleteEx.get(CompleteEx.size()-1).getDate().equals(day)){
-                CompleteEx.remove(CompleteEx.size()-1);
+            // ToDo: Fix here. You cannot compare int and calendarDay
+            if(ExRecord.get(ExRecord.size()-1).getDate().equals(day)){
+                ExRecord.remove(ExRecord.size()-1);
             }
         }
-        CompleteEx.add(new CompleteEx(CalendarDay.today(), day));
-        saveRead.SaveExerciseCompData(getApplicationContext(), CompleteEx, Constants.EX_SHP_KEY_COMPLETE);
+        ExRecord.add(new ExRecord(CalendarDay.today(), day));
+        saveRead.saveData(getApplicationContext(), ExRecord, Constants.EX_SHP_KEY_COMPLETE);
 
         builder.setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
             @Override
@@ -266,27 +263,27 @@ public class StartEx extends AppCompatActivity {
 
                 switch (day){
                     case 1:
-                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                        todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                         break;
                     case 2:
-                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                        todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                         break;
                     case 3:
-                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                        todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                         break;
                     case 4:
-                        todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+                        todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                         break;
                 }
                 if(isExEmpty(todayEx) == 1){
-                    todayEx = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                    todayEx = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                     day = 1;
                 }
 
                 todayEx.add(new Ex(day + ""));
-                saveRead.SaveExerciseData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
+                saveRead.saveData(getApplicationContext(), todayEx, Constants.EX_SHP_KEY_todayEx);
 
-                Intent intent = new Intent(getApplicationContext(), EndEx.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityEndEx.class);
                 startActivity(intent);
 
                 if (mInterstitialAd.isLoaded()) {

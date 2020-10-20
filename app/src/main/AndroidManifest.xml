@@ -17,7 +17,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ActivityMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,21 +25,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Routine"/>
-        <activity android:name=".RoutinePeriod"/>
-        <activity android:name=".Lower"/>
-        <activity android:name=".Upper"/>
-        <activity android:name=".Diet"/>
-        <activity android:name=".Core"/>
-        <activity android:name=".RoutineNumber"/>
-        <activity android:name=".ExkindSel"/>
-        <activity android:name=".TodayExercise"/>
-        <activity android:name=".TodayEx"/>
-        <activity android:name=".ExPropertyCard"/>
-        <activity android:name=".MyRoutine"/>
-        <activity android:name=".SetIntensity"/>
-        <activity android:name=".StartEx"/>
-        <activity android:name=".EndEx"/>
-        <activity android:name=".Rest" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".ActivityRoutinePeriod"/>
+        <activity android:name=".ActivityLower"/>
+        <activity android:name=".ActivityUpper"/>
+        <activity android:name=".ActivityDiet"/>
+        <activity android:name=".ActivityCore"/>
+        <activity android:name=".ActivityRoutineNumber"/>
+        <activity android:name=".ActivityExkindSel"/>
+        <activity android:name=".ActivityTodayExercise"/>
+        <activity android:name=".ActivityMyRoutine"/>
+        <activity android:name=".ActivitySetIntensity"/>
+        <activity android:name=".ActivityStartEx"/>
+        <activity android:name=".ActivityEndEx"/>
+        <activity android:name=".ActivityRest" android:theme="@android:style/Theme.Dialog" />
     </application>
 </manifest>

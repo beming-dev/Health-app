@@ -11,7 +11,7 @@ package org.techtown.realapp;
 
         import java.util.ArrayList;
 
-public class ExkindSel extends AppCompatActivity {
+public class ActivityExkindSel extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;

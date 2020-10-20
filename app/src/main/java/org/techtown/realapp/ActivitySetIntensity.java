@@ -1,26 +1,16 @@
 package org.techtown.realapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class SetIntensity extends AppCompatActivity {
+public class ActivitySetIntensity extends AppCompatActivity {
     ArrayList<Ex> exercise;
     SaveExercise saveRead = new SaveExercise();
 
@@ -47,19 +37,19 @@ public class SetIntensity extends AppCompatActivity {
 
         switch(day){
             case 1:
-                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day1);
+                exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day1);
                 Intensity_key = Constants.EX_SHP_KEY_day1;
                 break;
             case 2:
-                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day2);
+                exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day2);
                 Intensity_key = Constants.EX_SHP_KEY_day2;
                 break;
             case 3:
-                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day3);
+                exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day3);
                 Intensity_key = Constants.EX_SHP_KEY_day3;
                 break;
             case 4:
-                exercise = saveRead.ReadExerciseData(getApplicationContext(), Constants.EX_SHP_KEY_day4);
+                exercise = saveRead.loadDataEx(getApplicationContext(), Constants.EX_SHP_KEY_day4);
                 Intensity_key = Constants.EX_SHP_KEY_day4;
                 break;
         }
@@ -96,7 +86,7 @@ public class SetIntensity extends AppCompatActivity {
                     int rest = Integer.parseInt(editText_rest.getText().toString());
                     exercise.get(pos).setRestTime(rest);
                 }
-                saveRead.SaveExerciseData(getApplicationContext(), exercise, Intensity_key);
+                saveRead.saveData(getApplicationContext(), exercise, Intensity_key);
                 finish();
             }
         });
