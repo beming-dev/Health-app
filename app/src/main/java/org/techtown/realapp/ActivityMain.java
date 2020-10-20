@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ActivityMain extends AppCompatActivity {
 
+//    ToDo: Factorize!
     ArrayList<Ex> exercise_day1 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day2 = new ArrayList<Ex>();
     ArrayList<Ex> exercise_day3 = new ArrayList<Ex>();
@@ -65,6 +66,7 @@ public class ActivityMain extends AppCompatActivity {
         });
 
         // ToDo: 운동 추가할 때 Constant의 Start변수도 꼭 바꾸기
+        // ToDo: 애초에 이걸  Constant에 넣는 것 고려해볼 것.
         String[] exNames = {"상체 1", "상체 2", "상체 3", "상체 4", "상체 5", "상체 6", "상체 7", "상체 8",
                 "하체 1", "하체 2", "하체 3", "하체 4", "하체 5", "하체 6", "하체 7", "하체 8",
                 "다이어트 1", "다이어트 2", "다이어트 3", "다이어트 4", "다이어트 5", "다이어트 6", "다이어트 7", "다이어트 8",

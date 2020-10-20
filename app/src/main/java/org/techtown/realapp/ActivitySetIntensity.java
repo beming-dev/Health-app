@@ -32,6 +32,7 @@ public class ActivitySetIntensity extends AppCompatActivity {
         editText_set = findViewById(R.id.editText_set);
 
         Intent intent = getIntent();
+        // ToDo: Use constants
         day = intent.getExtras().getInt("day");
         pos = intent.getExtras().getInt("pos");
 

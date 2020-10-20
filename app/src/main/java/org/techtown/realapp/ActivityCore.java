@@ -31,6 +31,7 @@ public class ActivityCore extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         Intent intent = getIntent();
+        // ToDo: Use constants
         int requestCode = intent.getExtras().getInt("requestCode");
 
         myDataSet = new ArrayList<>();
