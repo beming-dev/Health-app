@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -37,6 +38,8 @@ public class StartEx extends AppCompatActivity {
     Button btnStop;
     Button btnNextSet;
 
+    private InterstitialAd mInterstitialAd;
+
     ArrayList<Ex> todayEx;
     SaveExercise saveRead = new SaveExercise();
 
@@ -54,6 +57,12 @@ public class StartEx extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.start_ex);
+
+        MobileAds.initialize(StartEx.this, getString(R.string.admob_app_id));
+        //ad
+        mInterstitialAd = new InterstitialAd(getApplicationContext());
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         myTimer = new MyTimer(60000, 1000);
 
@@ -252,7 +261,6 @@ public class StartEx extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
                 day = Integer.parseInt(todayEx.get(todayEx.size()-1).getName()) + 1;
                 if(day == 5){day =1;}
 
@@ -280,6 +288,12 @@ public class StartEx extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), EndEx.class);
                 startActivity(intent);
+
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
             }
         });
 

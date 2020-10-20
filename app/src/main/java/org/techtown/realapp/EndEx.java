@@ -20,7 +20,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class EndEx extends AppCompatActivity {
-    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +29,6 @@ public class EndEx extends AppCompatActivity {
 
         Button btn_toHome = findViewById(R.id.btn_toHome);
         Button btn_exit = findViewById(R.id.btn_exit);
-
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
-        //ad
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
-        }
 
 
         btn_toHome.setOnClickListener(new View.OnClickListener() {
